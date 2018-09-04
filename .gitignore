@@ -38,3 +38,9 @@ Thumbs.db
 
 # pycharm #
 .idea
+
+# vs code #
+.vscode
+
+# env #
+venv
