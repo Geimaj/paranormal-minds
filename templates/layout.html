@@ -15,15 +15,18 @@
         <a href="{{ logout_url }}">Sign out</a>
         {% endif %}
 
-
-
         <button class="btnCreateCourse">Create Course</button>
         <button class="btnJoinCourse">Join Course</button>
 
 </nav>
 
+
 <div class="sidebar">
-        sidebar goes here
+
+        {% for course in courses %}
+        <li>  {{course}}  </li>
+        {% endfor %}
+
 </div>
 
 <div id="page_content">
