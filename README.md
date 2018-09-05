@@ -18,7 +18,7 @@ source code for paranormal minds classroom system
  `dev_appserver.py .`
  
  
- #deploy
+ # deploy
 
  `gulp styles`
 
