@@ -2,9 +2,9 @@
 source code for paranormal minds classroom system
 
 # requirements
- python2.7
- node.js
- google cloud sdk https://cloud.google.com/appengine/docs/standard/python/download
+ * python2.7
+ * node.js
+ * google cloud sdk https://cloud.google.com/appengine/docs/standard/python/download
  
  
  # install dependencies
@@ -12,7 +12,8 @@ source code for paranormal minds classroom system
  `npm install`
  
  # run project
-  `gulp watch`
+
+ `gulp watch`
 
  `dev_appserver.py .`
  
@@ -20,5 +21,4 @@ source code for paranormal minds classroom system
  #deploy
  `gulp styles`
 
- `gcloud --project=paranormal-minds app deploy app.yaml
-`
+ `gcloud --project=paranormal-minds app deploy app.yaml`
