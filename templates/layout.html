@@ -3,8 +3,19 @@
 {% block content %}
 <nav>
 
-        <a href="#">Sign up</a>
-        <a href="#">Sign in</a>
+        {% if username %}
+        {{username}}'s classroom
+        {% endif %}
+
+        {% if login_url %}
+        <a href="{{ login_url }}">Sign in</a>
+        {% endif %}
+
+        {% if logout_url %}
+        <a href="{{ logout_url }}">Sign out</a>
+        {% endif %}
+
+
 
         <button class="btnCreateCourse">Create Course</button>
         <button class="btnJoinCourse">Join Course</button>

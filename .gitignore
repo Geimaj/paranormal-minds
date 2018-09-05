@@ -44,3 +44,6 @@ Thumbs.db
 
 # env #
 venv
+
+credentials.json
+token.json
