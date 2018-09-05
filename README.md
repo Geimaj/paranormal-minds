@@ -14,11 +14,12 @@ source code for paranormal minds classroom system
  # run project
 
  `gulp watch`
-
+ 
  `dev_appserver.py .`
  
  
  #deploy
+
  `gulp styles`
 
  `gcloud --project=paranormal-minds app deploy app.yaml`
