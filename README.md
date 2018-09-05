@@ -2,8 +2,9 @@
 source code for paranormal minds classroom system
 
 # requirements
- 
- node
+ python2.7
+ node.js
+ google cloud sdk https://cloud.google.com/appengine/docs/standard/python/download
  
  
  # install dependencies
