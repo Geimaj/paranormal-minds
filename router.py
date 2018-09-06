@@ -5,6 +5,7 @@ app = WSGIApplication(
     routes=[
         Route('/', handler='app.home.Home'),
         Route('/announcements', handler='app.announcements.Announcements'),
+        Route('/course/create', handler='app.createCourse.CreateCourse')
     ]
 )
 
