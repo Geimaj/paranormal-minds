@@ -32,8 +32,6 @@ class BaseRequestHandler(RequestHandler):
         kwargs['logout_url'] = logout_url
         kwargs['login_url'] = login_url
 
-        print kwargs
-
         template_html = jinja_template.render(kwargs)
 
         self.response.out.write(template_html)

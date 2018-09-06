@@ -48,3 +48,5 @@ venv
 
 credentials.json
 token.json
+node_nodules
+static
