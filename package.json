@@ -4,7 +4,8 @@
   "description": "source code for paranormal minds classroom system",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "dev_appserver.py --port 7777 ."
   },
   "repository": {
     "type": "git",

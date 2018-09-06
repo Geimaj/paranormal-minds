@@ -15,7 +15,7 @@ source code for paranormal minds classroom system
 
  `gulp watch`
  
- `dev_appserver.py .`
+ `npm start`
  
  
  # deploy
