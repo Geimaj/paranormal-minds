@@ -2,35 +2,29 @@
 
 {% block content %}
 <nav>
-
-        {% if username %}
-        {{username}}'s classroom
-        {% endif %}
-
-        {% if login_url %}
-        <a href="{{ login_url }}">Sign in</a>
-        {% endif %}
-
-        {% if logout_url %}
-        <a href="{{ logout_url }}">Sign out</a>
-        {% endif %}
-
-
-        <button class="btnCreateCourse" onclick="window.location.href='/course/create'">Create Course </button>
-        <button class="btnJoinCourse">Join Course</button>
-
-</nav>
-
-<nav id="nav2">
-
         <ul>
-                <li><a href="/announcements.html">Announcements</a></li>
-                <li><a href="/content.html">Content</a></li>
-                <li><a href="/discussion.html">Discussion</a></li>
+               {% if username %}
+                <li id="name">{{username}}'s classroom</li>
+                {% endif %}
+
+                {% if login_url %}
+                  <li><a href="{{ login_url }}">Sign in</a></li>
+                {% endif %}
+
+                {% if logout_url %}
+                 <li><a href="{{ logout_url }}">Sign out</a></li>
+                {% endif %}
+
+                <li><a class="btnCreateCourse" onclick="window.location.href='/course/create'">Create Course </a></li>
+                <li><a class="btnJoinCourse" onclick="window.location.href='/course/join'">Join Course</a></li>
+                <li><a href="/announcements">Announcements</a></li>
+                <li><a href="/content/content">Content</a></li>
+                <li><a href="/discussion/discussion">Discussion</a></li>
+
+
         </ul>
 
 </nav>
-
 
 <div class="sidebar">
 
