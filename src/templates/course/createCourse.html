@@ -1,0 +1,36 @@
+
+{% extends 'layout.html' %}
+
+{% block page_content %}
+<div class="container">
+<h1>Create Course</h1>
+<h2>
+    this is the create Course Page
+</h2>
+<p>Please fill in this form to create a course.</p>
+
+<hr>
+<label for="courseName"><b>Course Name</b></label>
+    <input type="text" placeholder="Enter Course Name" name="courseName" id="courseName" required>
+<br>
+    <br>
+<label for="desHeading"><b>Description Heading</b></label>
+    <input type="text" placeholder="Enter Description Heading" name="desHeading" id="desHeading" required>
+<br>
+    <br>
+<label for="description"><b>Description</b></label>
+    <input type="text" placeholder="Enter Description" name="description" id="description" required>
+<br>
+    <br>
+<label for="ownerID"><b>Owner ID</b></label>
+    <input type="text" placeholder="Enter Owner ID" name="ownerID" id="ownerID" required>
+<br>
+    <br>
+<label for="courseState"><b>Course State</b></label>
+    <input type="text" placeholder="Enter course State" name="courseState" id="courseState" required>
+<hr>
+<button type="submit" class="createCbtn" formmethod="post">Create Course</button>
+
+</div>
+{% endblock %}
+

@@ -4,7 +4,9 @@
   "description": "source code for paranormal minds classroom system",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "gulp styles & gulp watch & dev_appserver.py --port 7777 .",
+    "deploy": "gulp styles & gcloud --project=paranormal-minds app deploy app.yaml"
   },
   "repository": {
     "type": "git",
