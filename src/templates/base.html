@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if title != None and title != False %}
+      <title>{{title}} | Paranormal minds</title>
+    {% else %}
+      <title>Paranormal minds</title>
+    {% endif %}
+    <link href="/static/css/style.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div id="wrapper">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

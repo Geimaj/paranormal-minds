@@ -6,6 +6,7 @@
 *.exe
 *.o
 *.so
+*.pyc
 
 # Packages #
 ############
@@ -44,3 +45,8 @@ Thumbs.db
 
 # env #
 venv
+
+credentials.json
+token.json
+node_modules
+static

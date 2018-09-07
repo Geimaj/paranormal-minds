@@ -1,0 +1,26 @@
+{
+  "name": "paranormal-minds",
+  "version": "1.0.0",
+  "description": "source code for paranormal minds classroom system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "gulp styles & gulp watch & dev_appserver.py --port 7777 .",
+    "deploy": "gulp styles & gcloud --project=paranormal-minds app deploy app.yaml"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Geimaj/paranormal-minds.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Geimaj/paranormal-minds/issues"
+  },
+  "homepage": "https://github.com/Geimaj/paranormal-minds#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-sass": "^4.0.1"
+  }
+}
