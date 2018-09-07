@@ -13,6 +13,10 @@ source code for paranormal minds classroom system
 
  `npm install`
  
+ `pip install --upgrade google-api-python-client`
+ 
+
+ 
  # run project
  
  `npm start`
