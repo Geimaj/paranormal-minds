@@ -10,7 +10,4 @@ class CreateCourse(BaseRequestHandler):
 
         self.render('course/createCourse.html', **template_parms)
 
-    def post(self):
-        {
 
-        }

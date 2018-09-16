@@ -1,0 +1,33 @@
+
+{% extends 'layout.html' %}
+
+{% block page_content %}
+
+<div class="container">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Join Course</title>
+</head>
+
+<h1>Paranormal Minds Course Enrollment</h1>
+
+
+<form>
+
+<br><p1>Please enter unique course code to join: </p1></br>
+
+<br>
+    <center>
+    <label for="courseCode"><b>Paranormal Code:</b></label>
+    <input type="text" placeholder="Enter here" name="courseCode" id="courseCode" required>
+    <button type="submit" class="joinCoursebtn" formmethod="post">Submit</button>
+    </center>
+</br>
+
+</form>
+
+<br><center><p2><small>**Please ensure the correct course code has been entered before submission**</small></p2></center></br>
+
+</div>
+{% endblock %}

@@ -5,10 +5,10 @@ from webapp2 import Route
 app = WSGIApplication(
     routes=[
         Route('/', handler='src.app.home.Home'),
+        Route('/announcements', handler='src.app.announcements.Announcements'),
         Route('/course/create', handler='src.app.createCourse.CreateCourse'),
-        Route('/content/content', handler='src.app.content.Content'),
-        Route('/discussion/discussion', handler='src.app.discussion.Discussion'),
-        Route('/announcements', handler='src.app.announcements.Announcements')
+        Route('/course/join', handler='src.app.joinCourse.JoinCourse')
+
     ]
 )
 
