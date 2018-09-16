@@ -2,28 +2,36 @@
 
 {% block content %}
 <nav>
+        <ul>
+               {% if username %}
+                <li id="name">{{username}}'s classroom</li>
+                {% endif %}
 
-        {% if username %}
-        {{username}}'s classroom
-        {% endif %}
+                {% if login_url %}
+                  <li><a href="{{ login_url }}">Sign in</a></li>
+                {% endif %}
 
-        {% if login_url %}
-        <a href="{{ login_url }}">Sign in</a>
-        {% endif %}
+                {% if logout_url %}
+                 <li><a href="{{ logout_url }}">Sign out</a></li>
+                {% endif %}
 
-        {% if logout_url %}
-        <a href="{{ logout_url }}">Sign out</a>
-        {% endif %}
+                <li><a class="btnCreateCourse" onclick="window.location.href='/course/create'">Create Course </a></li>
+                <li><a class="btnJoinCourse" onclick="window.location.href='/course/join'">Join Course</a></li>
+                <li><a href="/announcements">Announcements</a></li>
+                <li><a href="/content/content">Content</a></li>
+                <li><a href="/discussion/discussion">Discussion</a></li>
 
 
-
-        <button class="btnCreateCourse" onclick="window.location.href='/course/create'">Create Course </button>
-        <button class="btnJoinCourse">Join Course</button>
+        </ul>
 
 </nav>
 
 <div class="sidebar">
-        sidebar goes here
+
+        {% for course in courses %}
+        <li>  {{course}}  </li>
+        {% endfor %}
+
 </div>
 
 <div id="page_content">
