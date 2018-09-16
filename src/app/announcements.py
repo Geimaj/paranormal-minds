@@ -1,4 +1,4 @@
-from framework.request_handler import BaseRequestHandler
+from src.framework.request_handler import BaseRequestHandler
 
 
 class Announcements(BaseRequestHandler):
