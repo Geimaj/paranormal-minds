@@ -5,20 +5,10 @@ from oauth2client import client
 service = build('classroom', 'v1')
 
 class CreateCourse(BaseRequestHandler):
-    @decorator.oauth_required
+    @decorator.oauth_aware
     def get(self):
         try:
-            # Call the Classroom API
-            results = service.courses().list(pageSize=10).execute(http=decorator.http())
-            courses = results.get('courses', [])
-
-            if not courses:
-                print('No courses found.')
-            else:
-                print('Courses:')
-                for course in courses:
-                    print(course['name'])
-
+           
             template_parms = {
             }
 

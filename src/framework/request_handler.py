@@ -27,7 +27,7 @@ class BaseRequestHandler(RequestHandler):
         loader=jinja2.FileSystemLoader(template_dir)
     )
 
-    @decorator.oauth_aware
+    # @decorator.oauth_aware
     def render(self, template, **kwargs):
         jinja_template = self.jinja_enviroment.get_template(template)
 
