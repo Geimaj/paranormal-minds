@@ -15,15 +15,21 @@
         <a href="{{ logout_url }}">Sign out</a>
         {% endif %}
 
-
-
         <button class="btnCreateCourse" onclick="window.location.href='/course/create'">Create Course </button>
         <button class="btnJoinCourse">Join Course</button>
 
 </nav>
 
 <div class="sidebar">
-        sidebar goes here
+        <ul class="course-list-sidebar">
+                {% if enrolled_courses %}
+                        {% for course in enrolled_courses %}
+                                <li><a>{{course['name']}}</a></li>
+                        {% endfor %}
+                {% else %}
+                        <li><a>enable classroom</a></li>
+                {% endif %}
+        </ul>
 </div>
 
 <div id="page_content">

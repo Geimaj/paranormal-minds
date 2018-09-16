@@ -1,32 +1,15 @@
-from src.framework.request_handler import BaseRequestHandler
+from src.framework.request_handler import BaseRequestHandler, decorator
 from apiclient.discovery import build
-from oauth2client.contrib.appengine import OAuth2Decorator
-from oauth2client.contrib.appengine import OAuth2DecoratorFromClientSecrets
 from oauth2client import client
-
-# decorator = OAuth2Decorator(
-#   client_id='355461818608-lsc3c0adqfkn9gddcba24fmoajhma8h7.apps.googleusercontent.com',
-#   client_secret='FnH17qv2k-eeSxZ9XZSJiPN9',
-#   scope='https://www.googleapis.com/auth/classroom.courses.readonly'
-# )
-
-# decorator = OAuth2DecoratorFromClientSecrets(
-#     'client_secrets.json',
-#     scope='https://www.googleapis.com/auth/classroom.courses.readonly',
-#     message='missing client secrets')
-from src.router import decorator
 
 service = build('classroom', 'v1')
 
-
 class CreateCourse(BaseRequestHandler):
-
-
     @decorator.oauth_required
     def get(self):
         try:
             # Call the Classroom API
-            results = service.courses().list(pageSize=10).execute()
+            results = service.courses().list(pageSize=10).execute(http=decorator.http())
             courses = results.get('courses', [])
 
             if not courses:
