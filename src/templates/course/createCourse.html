@@ -10,26 +10,29 @@
 <p>Please fill in this form to create a course.</p>
 
 <hr>
-<label for="courseName"><b>Course Name</b></label>
+<form method="post" action="/course/create">
+
+    <label for="courseName"><b>Course Name</b></label>
     <input type="text" placeholder="Enter Course Name" name="courseName" id="courseName" required>
-<br>
     <br>
-<label for="desHeading"><b>Description Heading</b></label>
-    <input type="text" placeholder="Enter Description Heading" name="desHeading" id="desHeading" required>
-<br>
+        <br>
+    <label for="desHeading"><b>Description Heading</b></label>
+        <input type="text" placeholder="Enter Description Heading" name="desHeading" id="desHeading" required>
     <br>
-<label for="description"><b>Description</b></label>
-    <input type="text" placeholder="Enter Description" name="description" id="description" required>
-<br>
+        <br>
+    <label for="description"><b>Description</b></label>
+        <input type="text" placeholder="Enter Description" name="description" id="description" required>
     <br>
-<label for="ownerID"><b>Owner ID</b></label>
-    <input type="text" placeholder="Enter Owner ID" name="ownerID" id="ownerID" required>
-<br>
+        <br>
+    <label for="ownerID"><b>Owner ID</b></label>
+        <input type="text" placeholder="Enter Owner ID" name="ownerID" id="ownerID" required>
     <br>
-<label for="courseState"><b>Course State</b></label>
-    <input type="text" placeholder="Enter course State" name="courseState" id="courseState" required>
-<hr>
-<button type="submit" class="createCbtn" formmethod="post">Create Course</button>
+        <br>
+    <label for="courseState"><b>Course State</b></label>
+        <input type="text" placeholder="Enter course State" name="courseState" id="courseState" required>
+    <hr>
+    <button type="submit" class="createCbtn" formmethod="post">Create Course</button>
+</form>
 
 </div>
 {% endblock %}
