@@ -27,7 +27,6 @@ class BaseRequestHandler(RequestHandler):
         loader=jinja2.FileSystemLoader(template_dir)
     )
 
-    # @decorator.oauth_aware
     def render(self, template, **kwargs):
         jinja_template = self.jinja_enviroment.get_template(template)
 
@@ -40,19 +39,11 @@ class BaseRequestHandler(RequestHandler):
         if (user):
             nickname = user.nickname()
             logout_url = users.create_logout_url('/')
+            enrolled_courses = self.getCourses()
 
         else:
             login_url = users.create_login_url('/')
 
-        #has user authenticated api access
-        if decorator.has_credentials():
-            # Call the Classroom API
-            results = service.courses().list(pageSize=10).execute(http=decorator.http())
-            enrolled_courses = results.get('courses', [])
-
-        else:
-            #TODO: add link to page explaining why they should enable
-            print 'no cred'
 
         kwargs['username'] = nickname
         kwargs['logout_url'] = logout_url
@@ -62,3 +53,21 @@ class BaseRequestHandler(RequestHandler):
         template_html = jinja_template.render(kwargs)
 
         self.response.out.write(template_html)
+
+
+    @decorator.oauth_aware
+    def getCourses(self):
+        #has user authenticated api access
+        if decorator.has_credentials():
+            # Call the Classroom API
+            try:
+                results = service.courses().list(pageSize=10).execute(http=decorator.http())
+                enrolled_courses = results.get('courses', [])
+                return enrolled_courses
+            except client.AccessTokenRefreshError as e:
+                print 'CLIENT ACCESS TOKEN REFRESH ERROR'
+                print e
+        else:
+            #TODO: add link to page explaining why they should enable
+            print 'no cred'
+        return None

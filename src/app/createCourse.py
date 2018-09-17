@@ -5,7 +5,7 @@ from oauth2client import client
 service = build('classroom', 'v1')
 
 class CreateCourse(BaseRequestHandler):
-    @decorator.oauth_aware
+    @decorator.oauth_required
     def get(self):
         try:
            
@@ -16,7 +16,6 @@ class CreateCourse(BaseRequestHandler):
 
         except client.AccessTokenRefreshError:
             self.redirect('/')
-
 
 
     @decorator.oauth_required
