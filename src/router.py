@@ -11,6 +11,7 @@ app = WSGIApplication(
         Route('/course/create', handler='src.app.createCourse.CreateCourse'),
         Route('/course/join', handler='src.app.joinCourse.JoinCourse'),
         Route(decorator.callback_path, decorator.callback_handler()),
+        Route('/auth/enable', handler='src.app.auth.AuthEnable'),
     ]
 )
 

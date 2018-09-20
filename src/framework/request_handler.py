@@ -15,7 +15,7 @@ CLIENT_SECRETS = os.path.abspath(os.path.join(parent_dir, 'credentials.json'))
 
 decorator = OAuth2DecoratorFromClientSecrets(
     CLIENT_SECRETS,
-    scope='https://www.googleapis.com/auth/classroom.courses.readonly')
+    scope='https://www.googleapis.com/auth/classroom.courses')
 
 
 class BaseRequestHandler(RequestHandler):
