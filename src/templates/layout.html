@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<nav>
+<nav class="wrapper">
         <ul>
                {% if username %}
                 <li id="name"><a href="/">{{username}}'s classroom</a></li>
@@ -16,13 +16,8 @@
                  <li><a href="{{ logout_url }}">Sign out</a></li>
                 {% endif %}
 
-                <li><a href="/announcements">Announcements</a></li>
-                <li><a href="/content/content">Content</a></li>
-                <li><a href="/discussion/discussion">Discussion</a></li>
-
-
-        <button class="btnCreateCourse" onclick="window.location.href='/course/create'">Create Course </button>
-        <button class="btnJoinCourse"onclick="window.location.href='/course/join'">Join Course</button>
+            <li><a class="btnCreateCourse" href="/course/create">Create Course</a></li>
+            <li><a class="btnJoinCourse" href="/course/join">Join Course</a></li>
 
         </ul>
 
