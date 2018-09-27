@@ -31,12 +31,6 @@ class BaseRequestHandler(RequestHandler):
         if (user):
             nickname = user.nickname()
             logout_url = users.create_logout_url('/')
-            enrolled_courses = course.getCourses()
-
-            print '_='*20
-            print enrolled_courses
-            print '_='*20
-
         else:
             login_url = users.create_login_url('/')
 

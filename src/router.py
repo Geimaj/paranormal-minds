@@ -8,11 +8,11 @@ app = WSGIApplication(
     routes=[
         Route('/', handler='src.app.home.Home'),
         Route('/announcements', handler='src.app.announcements.Announcements'),
-        Route('/course/create', handler='src.app.createCourse.CreateCourse'),
-        Route('/course/join', handler='src.app.joinCourse.JoinCourse'),
+        Route('/course/create', handler='src.app.course.CreateCourse'),
+        Route('/course/join', handler='src.app.course.JoinCourse'),
         Route('/course/<id>', handler='src.app.course.CourseHandler'),
+        Route('/courses', handler='src.app.courses.CoursesHandler'),
         Route(decorator.callback_path, decorator.callback_handler()),
-        Route('/auth/enable', handler='src.app.auth.AuthEnable'),
 
     ]
 )

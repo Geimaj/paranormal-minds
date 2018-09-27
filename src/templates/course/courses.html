@@ -1,0 +1,28 @@
+{% extends "layout.html" %} {% block page_content %}
+
+<div class="courses">
+
+  <div class="top-bar">
+    <h1 class='title'>Current enrollments</h1>
+      <button onclick="location.href = '/course/join'"> Join course </button>
+      <button onclick="location.href = '/course/create'"> Create course </button>
+  </div>
+
+  <div class="courses-container">
+      {% for course in courses%}
+          <div class="course-item">
+              <a href="/course/{{ course.id }}">
+                  <h3>{{ course.name }}</h3>
+                  <p>{{ course.description }}</p>
+                  <a href="{{ course['teacherFolder']['alternateLink'] }}" target="_blank" class="decorated">drive</a>
+              </a>
+          </div>
+      {% endfor %}
+  </div>
+
+
+</div>
+
+
+
+{% endblock %}

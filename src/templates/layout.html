@@ -16,9 +16,6 @@
                  <li><a href="{{ logout_url }}">Sign out</a></li>
                 {% endif %}
 
-            <li><a class="btnCreateCourse" href="/course/create">Create Course</a></li>
-            <li><a class="btnJoinCourse" href="/course/join">Join Course</a></li>
-
         </ul>
 
 
@@ -26,17 +23,7 @@
 
 <div class="sidebar">
         <ul class="course-list-sidebar">
-        {% if enrolled_courses %}
-                <!-- display courses if there are any -->
-                {% for course in enrolled_courses %}
-                        <li><a href='/course/{{ course.id }}'>{{course['name']}}</a></li>
-                {% endfor %}
-
-                <!-- if there are no courses display so -->
-                {% if enrolled_courses|length < 1 %}
-                        <li>no courses..</li>
-                {% endif %}
-        {% endif %}
+                <li><a href="/courses">Courses</a></li>
         </ul>
 </div>
 
