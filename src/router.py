@@ -2,7 +2,7 @@
 from webapp2 import WSGIApplication
 from webapp2 import Route
 
-from src.framework.request_handler import decorator
+from src.framework.api import decorator
 
 app = WSGIApplication(
     routes=[

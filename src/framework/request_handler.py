@@ -1,29 +1,13 @@
 from webapp2 import RequestHandler
-import os
 import jinja2
+import os
 
-from oauth2client.contrib.appengine import OAuth2DecoratorFromClientSecrets
+#google libs
 from google.appengine.api import users
-from apiclient.discovery import build
-from oauth2client import client
 
-
-
-
-
-
-service = build('classroom', 'v1')
-parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
-parent_dir = os.path.abspath(os.path.join(parent_dir, os.pardir))
-
-CLIENT_SECRETS = os.path.abspath(os.path.join(parent_dir, 'credentials.json'))
-
-decorator = OAuth2DecoratorFromClientSecrets(
-    CLIENT_SECRETS,
-    scope='https://www.googleapis.com/auth/classroom.courses')
-
-# from src.models import course
-
+#custom libs
+from src.framework import api
+from src.models import course
 
 
 class BaseRequestHandler(RequestHandler):
@@ -35,7 +19,6 @@ class BaseRequestHandler(RequestHandler):
         loader=jinja2.FileSystemLoader(template_dir)
     )
 
-    
     def render(self, template, **kwargs):
         jinja_template = self.jinja_enviroment.get_template(template)
 
@@ -48,7 +31,11 @@ class BaseRequestHandler(RequestHandler):
         if (user):
             nickname = user.nickname()
             logout_url = users.create_logout_url('/')
-            enrolled_courses = self.getCourses()
+            enrolled_courses = course.getCourses()
+
+            print '_='*20
+            print enrolled_courses
+            print '_='*20
 
         else:
             login_url = users.create_login_url('/')
@@ -57,7 +44,7 @@ class BaseRequestHandler(RequestHandler):
         kwargs['username'] = nickname
         kwargs['logout_url'] = logout_url
         kwargs['login_url'] = login_url
-        kwargs['enrolled_courses'] = enrolled_courses
+        kwargs['enrolled_courses'] = []#enrolled_courses
 
         template_html = jinja_template.render(kwargs)
 
@@ -65,19 +52,23 @@ class BaseRequestHandler(RequestHandler):
 
 
 
-    #TODO: MOVE THIS
-    @decorator.oauth_aware
-    def getCourses(self):
-        if decorator.has_credentials():
-            # Call the Classroom API
-            try:
-                results = service.courses().list(pageSize=10).execute(http=decorator.http())
-                enrolled_courses = results.get('courses', [])
+    # #TODO: MOVE THIS
+    # @decorator.oauth_required
+    # def getCourses(self):
+    #     # Call the Classroom API
+    #     print 'GET COURSES'
+    #     try:
+    #         results = service.courses().list(pageSize=10).execute(http=decorator.http())
 
-                return enrolled_courses
-            except client.AccessTokenRefreshError as e:
-                print 'CLIENT ACCESS TOKEN REFRESH ERROR'
-                print e
-            else:
-                self.redirect(decorator.authorize_url())
-        return None
+    #         # print'/|'*30
+    #         # print results
+    #         # print'/|'*30
+
+    #         # if results:
+    #         #     enrolled_courses = results.get('courses', [])
+    #         #     return  enrolled_courses
+
+    #     except client.AccessTokenRefreshError as e:
+    #         print 'CLIENT ACCESS TOKEN REFRESH ERROR'
+    #         print e
+    #         # self.redirect('/')
