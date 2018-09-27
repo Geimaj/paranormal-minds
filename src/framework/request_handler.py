@@ -66,14 +66,18 @@ class BaseRequestHandler(RequestHandler):
 
 
     #TODO: MOVE THIS
-    @decorator.oauth_required
+    @decorator.oauth_aware
     def getCourses(self):
-        # Call the Classroom API
-        try:
-            results = service.courses().list(pageSize=10).execute(http=decorator.http())
-            enrolled_courses = results.get('courses', [])
-            return enrolled_courses
-        except client.AccessTokenRefreshError as e:
-            print 'CLIENT ACCESS TOKEN REFRESH ERROR'
-            print e
+        if decorator.has_credentials():
+            # Call the Classroom API
+            try:
+                results = service.courses().list(pageSize=10).execute(http=decorator.http())
+                enrolled_courses = results.get('courses', [])
+
+                return enrolled_courses
+            except client.AccessTokenRefreshError as e:
+                print 'CLIENT ACCESS TOKEN REFRESH ERROR'
+                print e
+            else:
+                self.redirect(decorator.authorize_url())
         return None
