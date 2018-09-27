@@ -26,23 +26,23 @@
 
 <div class="sidebar">
         <ul class="course-list-sidebar">
-                {% if enrolled_courses %}
-                        <!-- display courses if there are any -->
-                        {% for course in enrolled_courses %}
-                                <li><a>{{course['name']}}</a></li>
-                        {% endfor %}
+        {% if enrolled_courses %}
+                <!-- display courses if there are any -->
+                {% for course in enrolled_courses %}
+                        <li><a href='/course/{{ course.id }}'>{{course['name']}}</a></li>
+                {% endfor %}
 
-                        <!-- if there are no courses display so -->
-                        {% if enrolled_courses|length < 1 %}
-                                <li>no courses..</li>
-                        {% endif %}
-                {% else %}
-                        <!-- no auth yet -->
-                        <!-- only show enable if logged in already -->
-                        {% if username %}
-                                <li><a href="/auth/enable">enable classroom</a></li>
-                        {% endif %}
+                <!-- if there are no courses display so -->
+                {% if enrolled_courses|length < 1 %}
+                        <li>no courses..</li>
                 {% endif %}
+                {% else %}
+                <!-- no auth yet -->
+                <!-- only show enable if logged in already -->
+                {% if username %}
+                        <li><a href="/auth/enable">enable classroom</a></li>
+                {% endif %}
+        {% endif %}
         </ul>
 </div>
 

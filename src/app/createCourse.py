@@ -9,7 +9,6 @@ urlfetch.set_default_fetch_deadline(45)
 service = build('classroom', 'v1')
 
 class CreateCourse(BaseRequestHandler):
-    @decorator.oauth_required
     def get(self):
         try:
            

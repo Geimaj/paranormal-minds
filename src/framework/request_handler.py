@@ -7,6 +7,11 @@ from google.appengine.api import users
 from apiclient.discovery import build
 from oauth2client import client
 
+
+
+
+
+
 service = build('classroom', 'v1')
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 parent_dir = os.path.abspath(os.path.join(parent_dir, os.pardir))
@@ -16,6 +21,9 @@ CLIENT_SECRETS = os.path.abspath(os.path.join(parent_dir, 'credentials.json'))
 decorator = OAuth2DecoratorFromClientSecrets(
     CLIENT_SECRETS,
     scope='https://www.googleapis.com/auth/classroom.courses')
+
+# from src.models import course
+
 
 
 class BaseRequestHandler(RequestHandler):
@@ -27,6 +35,7 @@ class BaseRequestHandler(RequestHandler):
         loader=jinja2.FileSystemLoader(template_dir)
     )
 
+    
     def render(self, template, **kwargs):
         jinja_template = self.jinja_enviroment.get_template(template)
 
@@ -55,7 +64,9 @@ class BaseRequestHandler(RequestHandler):
         self.response.out.write(template_html)
 
 
-    @decorator.oauth_aware
+
+    #TODO: MOVE THIS
+    @decorator.oauth_required
     def getCourses(self):
         #has user authenticated api access
         if decorator.has_credentials():
@@ -68,6 +79,5 @@ class BaseRequestHandler(RequestHandler):
                 print 'CLIENT ACCESS TOKEN REFRESH ERROR'
                 print e
         else:
-            #TODO: add link to page explaining why they should enable
             print 'no cred'
         return None
