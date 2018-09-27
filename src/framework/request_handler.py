@@ -75,5 +75,5 @@ class BaseRequestHandler(RequestHandler):
             return enrolled_courses
         except client.AccessTokenRefreshError as e:
             print 'CLIENT ACCESS TOKEN REFRESH ERROR'
-                print e
+            print e
         return None
