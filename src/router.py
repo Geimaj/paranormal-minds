@@ -7,7 +7,7 @@ from src.framework.api import decorator
 app = WSGIApplication(
     routes=[
         Route('/', handler='src.app.home.Home'),
-        Route('/announcements', handler='src.app.announcements.Announcements'),
+        Route('/announcements/create', handler='src.app.announcements.Announcements'),
         Route('/course/create', handler='src.app.course.CreateCourse'),
         Route('/course/join', handler='src.app.course.JoinCourse'),
         Route('/course/<id>', handler='src.app.course.CourseHandler'),
