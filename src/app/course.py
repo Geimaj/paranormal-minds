@@ -13,14 +13,15 @@ class CourseHandler(BaseRequestHandler):
     @decorator.oauth_required
     def get(self, id):
         try:
-            #call classorrm api and get details about course
+            #call classroom api and get details about course
             course = service.courses().get(id=id).execute(http=decorator.http())
 
             content = service.courses().courseWork().list(courseId=id).execute(http=decorator.http())
 
             template_parms = {
                 'course': course,
-                'content': content
+                'content': content,
+                'courseId' : id
             }
 
             self.render('course/course.html', **template_parms)

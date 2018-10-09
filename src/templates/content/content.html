@@ -1,5 +1,29 @@
 {% extends 'layout.html' %}
 
 {% block page_content %}
-    this is content
+<div class="createAssignment">
+
+    <form method="post" action="/content/createAssignment">
+        <hr>
+            <input type="hidden" name="courseId" value="{{courseId}}"
+            <label for="assTitle"><b>Assignment</b></label>
+            <input type="text" placeholder="Enter Assignment Title" name="assTitle" id="assTitle" required>
+            <br><br>
+            <label for="assDescription"><b>Description</b></label>
+                <input type="text" placeholder="Enter Description" name="assDescription" id="assDescription" required>
+            <br><br>
+            <label><b>Work Type</b></label>
+
+         <select name="workTypes">
+            <option value="COURSE_WORK_TYPE_UNSPECIFIED">Unspecified</option>
+            <option value="ASSIGNMENT">Assignment</option>
+            <option value="SHORT_ANSWER_QUESTION">Short Question</option>
+        </select>
+  <br><br>
+        <br>
+        <hr>
+         <button type="submit" class="createAbtn" formmethod="post">Create Assignment</button>
+    </form>
+
+</div>
 {% endblock %}

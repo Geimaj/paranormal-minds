@@ -36,13 +36,6 @@ section {
   border-top: 1px solid #ddd;
 }
 
-.tab-container{
-
-  
-  input {
-    display: none;
-  }
-}
 
 label {
   display: inline-block;
@@ -100,5 +93,9 @@ input:checked + label {
 	width: 50%;
 	margin-left: 15%;
     box-shadow:0 10px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+.tabs{
+  opacity: 0;
 }
 
