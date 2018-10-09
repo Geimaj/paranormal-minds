@@ -9,22 +9,25 @@
 <p>Course Discussion</p>
 
 <hr>
-<form method="post" action="/discussion/discussion">
+<form method="post" action="/discussion/add">
+
 
     <label for="dissTopic"><b>Discussion Topic</b></label>
     <input type="text" name="topic" id="dissTopic" required>
     <br>
         <br>
-    <label for="chatDiss"><b>Course Name</b></label>
-    <input type="text" name="Chat" id="chatDiss" required>
+    <textarea rows="30" cols="150">
+        Chat YOLO SWAG
+    </textarea>
     <br>
         <br>
-    <label for="messageText"><b>Description Heading</b></label>
+    <label for="messageText"><b></b></label>
         <input type="text" placeholder="Send a Message" name="message" id="messageText" required>
     <br>
         <br>
+     <button type="submit" class="sendMbtn" formmethod="post">Send</button>
 <hr>
-    <button type="submit" class="sendMbtn" formmethod="post">Send</button>
+
 </form>
 
 </div>
