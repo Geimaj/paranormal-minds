@@ -9,7 +9,6 @@ class CoursesHandler(BaseRequestHandler):
 
         courses = models.Course.getCourses()
 
-        print courses[0]
 
         template_parms = {
             'courses': courses

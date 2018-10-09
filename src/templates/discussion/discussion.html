@@ -1,5 +1,34 @@
 {% extends 'layout.html' %}
 
 {% block page_content %}
-    this is discussion
+    <div class="container">
+<h1>Discussion</h1>
+<h2>
+    This is the Discussion Page
+</h2>
+<p>Course Discussion</p>
+
+<hr>
+<form method="post" action="/discussion/add">
+
+
+    <label for="dissTopic"><b>Discussion Topic</b></label>
+    <input type="text" name="topic" id="dissTopic" required>
+    <br>
+        <br>
+    <textarea rows="30" cols="150">
+        Chat YOLO SWAG
+    </textarea>
+    <br>
+        <br>
+    <label for="messageText"><b></b></label>
+        <input type="text" placeholder="Send a Message" name="message" id="messageText" required>
+    <br>
+        <br>
+     <button type="submit" class="sendMbtn" formmethod="post">Send</button>
+<hr>
+
+</form>
+
+</div>
 {% endblock %}
