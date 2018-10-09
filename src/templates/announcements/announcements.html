@@ -3,9 +3,9 @@
 {% block page_content %}
 <div class="container">
     <h1>Announcements:</h1>
-    <form><center>
-        <div align="left" ><p>Upload announcements here:</p></div>
-        <p>Select course title: </p>
+    <form id = "announceForm" action="/announcements/add" method="post"><center>
+        <div align="left" ><p><u>Upload announcements here:</u></p></div>
+        <p>Enter course title: </p>
         <input type="text" name = "courseTitle" size ="70">
         <p>Enter Announcement title: </p>
         <input type="text" name="anTitle" size ="70">
@@ -15,7 +15,7 @@
         <p>Upload file here: </p><input type="hidden" name="MAX_FILE_SIZE" value="4194304" />
         <input type="file" />
         <p>--------------------</p>
-        <br><center><button> Submit </button></center></br>
+        <br><button type="submit"> Submit </button ></br>
 
         </center></form>
 
@@ -27,8 +27,7 @@
                 <option value="Unread">Unread</option>
                 <option value="Important">Important</option>
             </select>
-        </p>
-        <p>____This is where all the announcements will show up for students_____</p>
+
     </form>
 
     </div>
