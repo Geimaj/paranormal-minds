@@ -1,5 +1,31 @@
 {% extends 'layout.html' %}
 
 {% block page_content %}
-    this is discussion
+    <div class="container">
+<h1>Discussion</h1>
+<h2>
+    This is the Discussion Page
+</h2>
+<p>Course Discussion</p>
+
+<hr>
+<form method="post" action="/discussion/discussion">
+
+    <label for="dissTopic"><b>Discussion Topic</b></label>
+    <input type="text" name="topic" id="dissTopic" required>
+    <br>
+        <br>
+    <label for="chatDiss"><b>Course Name</b></label>
+    <input type="text" name="Chat" id="chatDiss" required>
+    <br>
+        <br>
+    <label for="messageText"><b>Description Heading</b></label>
+        <input type="text" placeholder="Send a Message" name="message" id="messageText" required>
+    <br>
+        <br>
+<hr>
+    <button type="submit" class="sendMbtn" formmethod="post">Send</button>
+</form>
+
+</div>
 {% endblock %}
