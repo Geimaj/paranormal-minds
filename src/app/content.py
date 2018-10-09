@@ -1,7 +1,7 @@
 from src.framework.request_handler import BaseRequestHandler
 
 
-class Content(BaseRequestHandler):
+class ContentHandler(BaseRequestHandler):
     def get(self):
 
 

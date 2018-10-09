@@ -13,7 +13,7 @@ class CourseHandler(BaseRequestHandler):
     @decorator.oauth_required
     def get(self, id):
         try:
-            #call classorrm api and get details about course
+            #call classroom api and get details about course
             course = service.courses().get(id=id).execute(http=decorator.http())
 
             print course

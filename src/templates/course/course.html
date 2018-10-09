@@ -1,6 +1,6 @@
 {% extends "layout.html" %} {% block page_content %}
 
-<div class="course">
+<div class="course" xmlns:>
 
 
   <h1 class='title'>{{course.name}} </h1>
@@ -8,14 +8,14 @@
         <a href="{{ course['teacherFolder']['alternateLink'] }}" target="_blank">drive</a>
 
   <div class="tab-container">
-    <input id="tab1" type="radio" name="tabs" checked>
+    <input class="tabs" id="tab1" type="radio" name="tabs">
     <label style="margin-left: 13%" for="tab1">ANNOUNCEMENTS</label>
 
-    <input id="tab2" type="radio" name="tabs">
-    <label for="tab2">CONTENT</label>
+    <input class="tabs" id="tab2" type="radio" name="tabs">
+    <label class="radio-input" for="tab2">CONTENT</label>
 
-    <input id="tab3" type="radio" name="tabs">
-    <label for="tab3">DISCUSSION</label>
+    <input class="tabs" id="tab3" type="radio" name="tabs">
+    <label  class="radio-input" for="tab3">DISCUSSION</label>
 
     <section id="content1">
       <div class="sliderz">
@@ -28,6 +28,8 @@
     <section id="content2">
       <div class="sliderz">
         <p>Some shit on content</p>
+
+        {{ course_work }}
 
       </div>
     </section>

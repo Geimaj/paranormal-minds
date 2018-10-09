@@ -12,6 +12,7 @@ app = WSGIApplication(
         Route('/course/join', handler='src.app.course.JoinCourse'),
         Route('/course/<id>', handler='src.app.course.CourseHandler'),
         Route('/courses', handler='src.app.courses.CoursesHandler'),
+        Route('/content', handler='src.app.content.ContentHandler'),
         Route(decorator.callback_path, decorator.callback_handler()),
 
     ]
