@@ -9,3 +9,8 @@ class Announcements(BaseRequestHandler):
         }
 
         self.render('announcements/announcements.html', **template_parms)
+
+    def post(self):
+        {
+
+        }
