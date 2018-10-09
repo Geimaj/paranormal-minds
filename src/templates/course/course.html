@@ -1,13 +1,17 @@
 {% extends "layout.html" %} {% block page_content %}
 
-<div class="course" xmlns:>
+<div class="course">
 
+  <div class="course details">
 
-  <h1 class='title'>{{course.name}} </h1>
-  <h2 class='description'>{{course.descriptionHeading}} </h2>
-        <a href="{{ course['teacherFolder']['alternateLink'] }}" target="_blank">drive</a>
+    <h1 class='title'>{{course.name}} </h1>
+    <h2 class='description'>{{course.descriptionHeading}} </h2>
+    <a href="{{ course['teacherFolder']['alternateLink'] }}" target="_blank">drive</a>
+
+  </div>
 
   <div class="tab-container">
+
     <input class="tabs" id="tab1" type="radio" name="tabs">
     <label style="margin-left: 13%" for="tab1">ANNOUNCEMENTS</label>
 
@@ -15,26 +19,38 @@
     <label class="radio-input" for="tab2">CONTENT</label>
 
     <input class="tabs" id="tab3" type="radio" name="tabs">
-    <label  class="radio-input" for="tab3">DISCUSSION</label>
+    <label class="radio-input" for="tab3">DISCUSSION</label>
 
 
 
+    <!-- announcements -->
     <section id="content1">
       <div class="sliderz">
-        {{ course }}
-            <button onclick="location.href = '/announcements/create'"> Create announcement </button>
-        <p>Some shit on Announcements</p>
+        <button onclick="location.href = '/announcements/create/{{ courseId }}'"> Create announcement </button>
+        <div id="announcements">
+      
+          {% for announcement in announcements %}
+
+          <div class="announcement">
+            <h1>{{ announcement.title }}</h1>
+            <p>{{announcement.content }}</p>
+            <aside>{{announcement.ownerEmail}}</aside>
+          </div>
+            
+          {% endfor %}
+          
+        </div>
       </div>
     </section>
 
+    <!-- content -->
     <section id="content2">
       <div class="sliderz">
         <a href="/content/{{courseId}}">Add Content</a>
-        <p>Some shit on content</p>
-        {{content}}
       </div>
     </section>
 
+    <!-- discussions -->
     <section id="content3">
       <div class="sliderz">
         <p>Some shit on Discussion</p>

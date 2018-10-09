@@ -1,34 +1,28 @@
-{% extends 'layout.html' %}
-
-{% block page_content %}
+{% extends 'layout.html' %} {% block page_content %}
 <div class="container">
-    <h1>Announcements:</h1>
-    <form id = "announceForm" action="/announcements/add" method="post"><center>
-        <div align="left" ><p><u>Upload announcements here:</u></p></div>
-        <p>Enter course title: </p>
-        <input type="text" name = "courseTitle" size ="70">
-        <p>Enter Announcement title: </p>
-        <input type="text" name="anTitle" size ="70">
-        <p>Enter announcement description: </p>
-        <input type="text" name="anDescription" size ="70">
+    <form id="announceForm" action="/announcements/create/{{ course.id }}" method="post">
+        <center>
 
-        <p>Upload file here: </p><input type="hidden" name="MAX_FILE_SIZE" value="4194304" />
-        <input type="file" />
-        <p>--------------------</p>
-        <br><button type="submit"> Submit </button ></br>
+            <div>
+                <h1>Create announcement for {{ course['teacherFolder']['title'] }}</h1>
+            </div>
 
-        </center></form>
+            <p>Enter Announcement title: </p>
+            <input type="text" name="title" size="70">
 
-    <form>
-        <h2>Recent Announcements</h2>
-        <p>Sort by:
-            <select>
-                <option value="Most Recent">Most Recent</option>
-                <option value="Unread">Unread</option>
-                <option value="Important">Important</option>
-            </select>
+            <p>Enter announcement description: </p>
+            <input type="text" name="description" size="70">
 
+            <p>Upload file here: </p>
+            <input type="file" />
+            <p>--------------------</p>
+            <br>
+            <button type="submit"> Submit </button>
+            </br>
+
+        </center>
     </form>
 
-    </div>
+
+</div>
 {% endblock %}

@@ -7,6 +7,8 @@ urlfetch.set_default_fetch_deadline(45)
 
 from src.framework.api import service, decorator
 
+import src.models as models
+
 
 class CourseHandler(BaseRequestHandler):
 
@@ -18,10 +20,15 @@ class CourseHandler(BaseRequestHandler):
 
             content = service.courses().courseWork().list(courseId=id).execute(http=decorator.http())
 
+            # fetch announcements for this course
+            announcements = models.Announcement.get_by_courseID(id)
+            print announcements
+
             template_parms = {
                 'course': course,
                 'content': content,
-                'courseId' : id
+                'courseId' : id,
+                'announcements': announcements
             }
 
             self.render('course/course.html', **template_parms)

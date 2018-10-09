@@ -4,6 +4,14 @@ from src.models.baseModel import BaseModel, decorator, client, service
 class Course(BaseModel):
 
     @staticmethod
+    def get_by_id(id):
+        if decorator.has_credentials():
+            course = service.courses().get(id=id).execute(http=decorator.http())
+            return course
+        else:
+            print 'NING CRED'    
+
+    @staticmethod
     def getCourses():
         # has user authenticated api access
         if decorator.has_credentials():
