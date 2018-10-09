@@ -41,8 +41,6 @@ class Announcements(BaseRequestHandler):
         ownerId = user.user_id()
         email = user.email()
 
-        print email
-
         # create announcement object from our models
         announcement = models.Announcement()
 

@@ -28,17 +28,20 @@
       <div class="sliderz">
         <button onclick="location.href = '/announcements/create/{{ courseId }}'"> Create announcement </button>
         <div id="announcements">
-      
-          {% for announcement in announcements %}
 
-          <div class="announcement">
-            <h1>{{ announcement.title }}</h1>
-            <p>{{announcement.content }}</p>
-            <aside>{{announcement.ownerEmail}}</aside>
-          </div>
-            
-          {% endfor %}
-          
+          {% if announcements %} 
+            {% for announcement in announcements %}
+
+            <div class="announcement">
+              <h1>{{ announcement.title }}</h1>
+              <p>{{announcement.content }}</p>
+              <aside>{{announcement.ownerEmail}}</aside>
+            </div>
+
+            {% endfor %}
+          {% else %}
+            No announcements yet..
+          {% endif %}
         </div>
       </div>
     </section>

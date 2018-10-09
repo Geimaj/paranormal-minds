@@ -1,0 +1,83 @@
+basic announcements functionality
+
+flow:
+1    land on course page 
+2    click create announcement
+        get request  to /announcements/create/<courseID> (get variable from url)
+        request comes into src.app.announcements.Announcement (GET METHOD RUNS)
+            show form
+3           submit form 
+               post request to /announcements/create/{{ course.id }} (get variable from template)
+
+                request comes into src.app.announcements.Announcement (POST METHOD RUNS)
+                    get data from POST 
+                    create announcement object
+                    save announcement object to db
+
+4                   redirect back to course page
+
+
+1
+user clicks on course
+browser makes GET request to /course/18252132205
+get method in /src/app/course.py CourseHandler runs (passes 18252132205 as id param )
+we fetch the course object by its id
+we fetch all announcements for this course
+we pass the course and announcements to the template so we can render details about it
+
+2
+browser makes GET request to /announcements/create/18252132205
+GET method in /src/app/announcements.py runs
+we fetch the course object by its id
+we pass the course to the template so we can render details about it
+the form renders
+
+3
+when we click submit the form action runs
+POST request to /announcements/create/18252132205
+POST method in /src/app/announcements.py runs
+we pull the data from the form into vaiables
+we get the current user
+we create an Announcement object
+we assign the values of the announcement object
+we write the announcement to the DB by calling .put
+we redirect back to the page for this course
+
+4
+browser makes GET request to /course/18252132205
+get method in /src/app/course.py CourseHandler runs (passes 18252132205 as id param )
+we get a reference to course
+announcements are fetched for course
+we pass announcements to template
+template renders announcements
+
+--template (course.html)
+(recives announcement array called 'announcements')
+create announcements container div in announcements tab (<div id="announcements">)(this is where all our announcements will live)
+loop through announcement array with {% for announcement in announcements % }
+add anncouncement div with details from anncouncement (anncouncement = current anncouncement in loop)
+
+this gives us the result
+<div id="announcements">
+
+           
+
+    <div class="announcement">
+        <h1>Test Due April 3</h1>
+        <p>Mafs section 1 - 18 due Rockday 3 April</p>
+        <aside>juum@bam.com</aside>
+    </div>
+
+    
+
+    <div class="announcement">
+        <h1>dogs are out</h1>
+        <p>who was it</p>
+        <aside>juum@bam.com</aside>
+    </div>
+
+           
+</div>
+
+
+
