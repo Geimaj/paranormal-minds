@@ -1,7 +1,7 @@
-from src.framework.api import decorator, service, client
+from src.models.baseModel import BaseModel, decorator, client, service
 
 
-class Course():
+class Course(BaseModel):
 
     @staticmethod
     def getCourses():
