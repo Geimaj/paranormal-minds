@@ -5,14 +5,14 @@
 
     <form method="post" action="/content/createAssignment">
         <hr>
-            <label for="createAssignment"><b>Assignment</b></label>
-            <input type="text" placeholder="Enter Assignment Title" name="createAssignment" id="createAssignment" required>
+            <input type="hidden" name="courseId" value="{{courseId}}"
+            <label for="assTitle"><b>Assignment</b></label>
+            <input type="text" placeholder="Enter Assignment Title" name="assTitle" id="assTitle" required>
             <br><br>
-            <label for="description"><b>Description</b></label>
-                <input type="text" placeholder="Enter Description" name="description" id="description" required>
+            <label for="assDescription"><b>Description</b></label>
+                <input type="text" placeholder="Enter Description" name="assDescription" id="assDescription" required>
             <br><br>
-            <label for="workType"><b>Work Type</b></label>
-                <input type="text" placeholder="Choose Work Type" name="workType" id="workType" required>
+            <label><b>Work Type</b></label>
 
          <select name="workTypes">
             <option value="COURSE_WORK_TYPE_UNSPECIFIED">Unspecified</option>

@@ -20,7 +20,8 @@ class CourseHandler(BaseRequestHandler):
 
             template_parms = {
                 'course': course,
-                'content': content
+                'content': content,
+                'courseId' : id
             }
 
             self.render('course/course.html', **template_parms)
