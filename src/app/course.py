@@ -16,10 +16,11 @@ class CourseHandler(BaseRequestHandler):
             #call classorrm api and get details about course
             course = service.courses().get(id=id).execute(http=decorator.http())
 
-            print course
+            content = service.courses().courseWork().list(courseId=id).execute(http=decorator.http())
 
             template_parms = {
-                'course': course
+                'course': course,
+                'content': content
             }
 
             self.render('course/course.html', **template_parms)
