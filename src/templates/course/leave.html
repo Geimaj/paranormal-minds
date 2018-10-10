@@ -1,0 +1,13 @@
+{% extends "layout.html" %} {% block page_content %}
+
+<form method="post" action="/course/{{course.id}}/leave">
+    <h1>
+        are you sure you want to leave {{ course.name}}?
+    </h1>
+
+    <input type="submit" value="Leave" class="button-primary">
+    <input type="submit" value="Cancel">
+    
+</form>
+
+{% endblock %}

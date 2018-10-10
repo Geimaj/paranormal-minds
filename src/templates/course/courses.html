@@ -15,10 +15,14 @@
               <a href="/course/{{ course.id }}">
                   <h3>{{ course.name }}</h3>
                   <p>{{ course.description }}</p>
+                  {% if course['teacherFolder'] %}
                   <a href="{{ course['teacherFolder']['alternateLink'] }}" target="_blank" class="decorated">drive</a>
+                  {% endif %}
               </a>
           </div>
       {% endfor %}
+      {% else %}
+          <h3>You have not yet joined any classes...</h3>
       {% endif %}
 
   </div>

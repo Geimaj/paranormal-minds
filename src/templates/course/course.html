@@ -6,7 +6,9 @@
 
     <h1 class='title'>{{course.name}} </h1>
     <h2 class='description'>{{course.descriptionHeading}} </h2>
+    {% if course['teacherFolder'] %}
     <a href="{{ course['teacherFolder']['alternateLink'] }}" target="_blank">drive</a>
+    {% endif %}
     <h4>Taught by:
       {% for teacher in teachers %}
         {{ teacher['profile']['name']['fullName'] }}
@@ -17,16 +19,16 @@
 
     <p>
       <ul>
-        <li>
-          {% if course.room %}
+        {% if course.room %}
+          <li>
           Room: {{course.room}}
-          {% endif %}
         </li>
-        <li>
+          {% endif %}
           {% if course.section %}
+          <li>
           Section: {{course.section}}
-          {% endif %}
         </li>
+          {% endif %}
         <li>
           Course State: {{course.courseState}}
         </li>
@@ -124,7 +126,7 @@
             <li><a href="/invite/teacher/{{ courseId }}">Invite teachers</a></li>
             {% endif %}
             <li><a href="/invite/student/{{ courseId }}">Invite students</a></li>
-            <li><a href="">Leave course</a></li>
+            <li><a href="/course/{{courseId}}/leave">Leave course</a></li>
             
           </ul>
 

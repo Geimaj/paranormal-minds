@@ -1,14 +1,13 @@
-from src.framework.request_handler import BaseRequestHandler
 from oauth2client import client
-
+import json as simplejson
+import googleapiclient.errors as errors
 from google.appengine.runtime import DeadlineExceededError
 from google.appengine.api import urlfetch
 urlfetch.set_default_fetch_deadline(45)
 
 from src.framework.api import service, decorator
-
+from src.framework.request_handler import BaseRequestHandler
 import src.models as models
-
 
 class CourseHandler(BaseRequestHandler):
 
@@ -19,19 +18,23 @@ class CourseHandler(BaseRequestHandler):
             course = service.courses().get(id=id).execute(http=decorator.http())
 
             #fetch teachers for this course
-            teachers = []
             teacher_results = service.courses().teachers().list(courseId=id).execute(http=decorator.http())
-            if teacher_results['teachers']:
-                teachers = teacher_results['teachers']
             
             # fetch students for this course
-            students = []
             student_results = service.courses().students().list(courseId=id).execute(http=decorator.http())
-            if student_results['students']:
+
+            #get data we are inretested in from api results
+            students = []
+            teachers = []
+            content = []
+            try:
                 students = student_results['students']
+                teachers = teacher_results['teachers']
+            except Exception as e:
+                print e
 
             #fetch content for this course
-            content = service.courses().courseWork().list(courseId=id).execute(http=decorator.http())
+            # content = service.courses().courseWork().list(courseId=id, courseWorkStates="PUBLISHED").execute(http=decorator.http())
 
             # fetch announcements for this course
             announcements = models.Announcement.get_by_courseID(id)
@@ -151,14 +154,64 @@ class CourseDetailsHandler(BaseRequestHandler):
             course['descriptionHeading'] = descriptionHeading
             course['description'] = description
             course['room'] = room
-            course['courseState'] = courseState
+            if courseState:
+                course['courseState'] = courseState
 
             # call api to update course
             service.courses().update(id=courseID, body=course).execute(http=decorator.http())
 
             # display updated course details page
             self.redirect('/course/%s' % courseID)
+        except errors.HttpError as e:
+            error = simplejson.loads(e.content).get('error')
+
+            message = str(error.get('message'))
+
+            if(message.startswith('@CourseNotModifiable')):
+                self.response.out.write('cant update course wiht courseState: %s ' % course['courseState'])
+                # self.redirect('/course/%s' % courseID)
+                
+            else:
+                raise
+
+
+
+class LeaveCourseHandler(BaseRequestHandler):
+    @decorator.oauth_required
+    def get(self, courseID):
+
+        # fetch course by id
+        course = models.Course.get_by_id(courseID)
+
+        template_parms = {
+            'course': course
+        }
+
+        self.render('course/leave.html', **template_parms)
+
+
+    @decorator.oauth_required
+    def post(self, courseID):
+
+        #leave course
+        try:
+            userProfile = service.userProfiles().get(userId='me').execute(http=decorator.http())
+            userId = userProfile['id']
+
+            course = models.Course.get_by_id(courseID)
+            print course
+            print 
+            print userProfile
+
+            # do I remove myself as a student or as a teacher
+            result = ''
+            # if models.Course.isUserTeacher(courseID, userId):
+            #     result = service.courses().teachers().delete(courseId=courseID, userId="me").execute(http=decorator.http())
+            # else:
+            result = service.courses().students().delete(courseId=courseID, userId="me").execute(http=decorator.http())
+    
+            print result
+
+            self.redirect('/courses')
         except Exception as e:
             print e
-
-
