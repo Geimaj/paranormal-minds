@@ -15,8 +15,8 @@ app = WSGIApplication(
         
         Route('/course/create', handler='src.app.course.CreateCourse'),
         Route('/course/join', handler='src.app.course.JoinCourse'),
+        Route('/course/<courseID>/details', handler='src.app.course.CourseDetailsHandler'),
         Route('/course/<id>', handler='src.app.course.CourseHandler'),
-        Route('/course/<id>/details', handler='src.app.course.CourseHandler'),
         
         Route('/courses', handler='src.app.courses.CoursesHandler'),
         

@@ -1,0 +1,17 @@
+#course-details {
+
+    width: 100%;
+
+    form {
+        input {
+            width: 100%;
+
+            &[type="submit"], &[type="button"]{
+                width: auto;
+            }
+
+        }
+    }
+
+
+}

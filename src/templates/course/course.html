@@ -7,7 +7,27 @@
     <h1 class='title'>{{course.name}} </h1>
     <h2 class='description'>{{course.descriptionHeading}} </h2>
     <a href="{{ course['teacherFolder']['alternateLink'] }}" target="_blank">drive</a>
+    <p class='description'>{{course.description}} </p>
+    
 
+    <p>
+      <ul>
+        <li>
+          {% if course.room %}
+          Room: {{course.room}}
+          {% endif %}
+        </li>
+        <li>
+          {% if course.section %}
+          Section: {{course.section}}
+          {% endif %}
+        </li>
+        <li>
+          Course State: {{course.courseState}}
+        </li>
+      </ul>
+      
+    </p>
   </div>
 
   <ul class="tabs" role="tablist">

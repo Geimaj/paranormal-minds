@@ -1,4 +1,4 @@
-from src.framework.request_handler import BaseRequestHandler#, decorator, service
+from src.framework.request_handler import BaseRequestHandler
 from oauth2client import client
 
 from google.appengine.runtime import DeadlineExceededError
@@ -94,10 +94,46 @@ class JoinCourse(BaseRequestHandler):
 
 
 class CourseDetailsHandler(BaseRequestHandler):
-    def get(self, courseId):
+    @decorator.oauth_required
+    def get(self, courseID):
+
+        # fetch course by id
+        course = models.Course.get_by_id(courseID)
 
         template_parms = {
-            'id', courseId
+            'course': course
         }
 
         self.render('course/details.html', **template_parms)
+
+    @decorator.oauth_required
+    def post(self, courseID):
+        try:
+                
+            # get reference to course object 
+            course = models.Course.get_by_id(courseID)
+
+            # get updated values from form
+            post = self.request.POST
+            name = post.get('name')
+            section = post.get('section')
+            descriptionHeading = post.get('description-heading')
+            description = post.get('description')
+            room = post.get('room')
+            courseState = post.get('courseState')
+
+            #assign new values from form to course 
+            course['name'] = name
+            course['section'] = section
+            course['descriptionHeading'] = descriptionHeading
+            course['description'] = description
+            course['room'] = room
+            course['courseState'] = courseState
+
+            # call api to update course
+            service.courses().update(id=courseID, body=course).execute(http=decorator.http())
+
+            # display updated course details page
+            self.redirect('/course/%s' % courseID)
+        except Exception as e:
+            print e
