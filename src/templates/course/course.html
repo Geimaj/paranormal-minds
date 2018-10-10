@@ -7,6 +7,11 @@
     <h1 class='title'>{{course.name}} </h1>
     <h2 class='description'>{{course.descriptionHeading}} </h2>
     <a href="{{ course['teacherFolder']['alternateLink'] }}" target="_blank">drive</a>
+    <h4>Taught by:
+      {% for teacher in teachers %}
+        {{ teacher['profile']['name']['fullName'] }}
+      {% endfor %}
+    </h4>
     <p class='description'>{{course.description}} </p>
     
 
@@ -78,6 +83,36 @@
     </li>
 
     <li>
+      <input type="radio" name="tabs" id="tab5" />
+      <label for="tab5" role="tab" aria-selected="false" aria-controls="panel2" tabindex="0">Members</label>
+      <div id="tab-content2" class="tab-content" role="tabpanel" aria-labelledby="specification" aria-hidden="true">
+        <div id="options-tab">
+          <H2>Members</H2>
+
+          <h4>Teachers</h4>
+          <ul>
+              {% for teacher in teachers %}
+                <li>
+                  {{ teacher['profile']['name']['fullName'] }}
+                </li>
+              {% endfor %}
+          </ul>
+
+          <hr>
+
+          <h4>Students</h4>
+          <ul>
+            {% for student in students %}
+              <li>{{student['profile']['name']['fullName']}}</li>
+            {% endfor %}
+          </ul>
+
+
+        </div>
+      </div>
+    </li>
+
+    <li>
       <input type="radio" name="tabs" id="tab4" />
       <label for="tab4" role="tab" aria-selected="false" aria-controls="panel2" tabindex="0">Options</label>
       <div id="tab-content2" class="tab-content" role="tabpanel" aria-labelledby="specification" aria-hidden="true">
@@ -85,11 +120,13 @@
          
           <ul>
             <li><a href="/course/{{courseId}}/details">Update course details</a></li>
-            <li><a href="">Invite students</a></li>
+            <li><a href="/invite/student/{{ courseId }}">Invite students</a></li>
             <li><a href="">Invite lecturers</a></li>
             <li><a href="">Delete course</a></li>
             
           </ul>
+
+          <button onclick="">Show class code</button>
 
         </div>
       </div>

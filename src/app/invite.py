@@ -1,0 +1,35 @@
+from src.framework.request_handler import BaseRequestHandler
+from src.framework.api import service, decorator
+
+class StudentInviteHandler(BaseRequestHandler):
+    @decorator.oauth_required
+    def get(self, courseID):
+
+        template_parms = {
+            'courseID': courseID
+        }
+
+        self.render('invite/invite.html', **template_parms)
+        
+    @decorator.oauth_required
+    def post(self, courseID):
+
+        # get data from form
+        email = self.request.POST.get('email')
+
+        student = {
+            'userId': email,
+            'courseId': courseID,
+            'role': 'STUDENT'
+        }
+
+        try:
+
+            # create invite object
+            invite = service.invitations().create(body=student).execute(http=decorator.http())
+
+            # invite = service.invitations().create()
+
+            print invite
+        except Exception as e:
+            print e

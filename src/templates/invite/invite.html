@@ -1,0 +1,19 @@
+{% extends "layout.html" %} {% block page_content %}
+
+<div id="invite">
+
+    <div>
+        <h1>Enter the email of the student you would like to invite:</h1>
+    </div>
+    <hr>
+    <form method="post" action="/invite/student/{{ courseID }}">
+        <div class="row">
+            <label for="email">Email</label>
+            <input class="seven columns"  type="email" name="email" required>
+        </div>
+        
+        <input type="submit" value="send" class="button-primary">
+    </form>
+</div>
+    
+{% endblock %}

@@ -18,6 +18,17 @@ class CourseHandler(BaseRequestHandler):
             #call classroom api and get details about course
             course = service.courses().get(id=id).execute(http=decorator.http())
 
+            #fetch teachers for this course
+            teachers = service.courses().teachers().list(courseId=id).execute(http=decorator.http())
+            teachers = teachers['teachers']
+
+            # fetch students for this course
+            students = service.courses().students().list(courseId=id).execute(http=decorator.http())
+            if students['students']:
+                students = students['students']
+            # students = students['students']
+
+            #fetch content for this course
             content = service.courses().courseWork().list(courseId=id).execute(http=decorator.http())
 
             # fetch announcements for this course
@@ -27,7 +38,9 @@ class CourseHandler(BaseRequestHandler):
                 'course': course,
                 'content': content,
                 'courseId' : id,
-                'announcements': announcements
+                'announcements': announcements,
+                'teachers': teachers,
+                'students': students
             }
 
             self.render('course/course.html', **template_parms)
