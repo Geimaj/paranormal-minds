@@ -26,3 +26,29 @@ class Course(BaseModel):
         else:
             print 'no cred'
         return None
+
+    @staticmethod
+    def isUserTeacher(courseID, userID):
+        if decorator.has_credentials():
+            try:
+                # get teachers for courseID
+                results = service.courses().teachers().list(courseId=courseID).execute(decorator.http())
+                teachers = []
+                if results['teachers']:
+                    teachers = results['teachers']
+
+                for teacher in teachers:
+                    # yes that userID is a teacher for that courseID
+                    if teacher['userId'] == userID:
+                        #stop looking and return true
+                        return True
+
+                #we didnt find any matching ID so this userID is not a teacher
+                return False
+
+            except Exception as e:
+                print e
+        else:
+            print
+            print 'NO CRED'
+            print

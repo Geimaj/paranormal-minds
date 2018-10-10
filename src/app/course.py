@@ -19,14 +19,16 @@ class CourseHandler(BaseRequestHandler):
             course = service.courses().get(id=id).execute(http=decorator.http())
 
             #fetch teachers for this course
-            teachers = service.courses().teachers().list(courseId=id).execute(http=decorator.http())
-            teachers = teachers['teachers']
-
+            teachers = []
+            teacher_results = service.courses().teachers().list(courseId=id).execute(http=decorator.http())
+            if teacher_results['teachers']:
+                teachers = teacher_results['teachers']
+            
             # fetch students for this course
-            students = service.courses().students().list(courseId=id).execute(http=decorator.http())
-            if students['students']:
-                students = students['students']
-            # students = students['students']
+            students = []
+            student_results = service.courses().students().list(courseId=id).execute(http=decorator.http())
+            if student_results['students']:
+                students = student_results['students']
 
             #fetch content for this course
             content = service.courses().courseWork().list(courseId=id).execute(http=decorator.http())
@@ -34,7 +36,14 @@ class CourseHandler(BaseRequestHandler):
             # fetch announcements for this course
             announcements = models.Announcement.get_by_courseID(id)
             
+            userProfile = service.userProfiles().get(userId='me').execute(http=decorator.http())
+            userId = userProfile['id']
+
+            isTeacher = models.Course.isUserTeacher(id, userId)
+            print isTeacher
+
             template_parms = {
+                'isTeacher': isTeacher,
                 'course': course,
                 'content': content,
                 'courseId' : id,
@@ -150,3 +159,5 @@ class CourseDetailsHandler(BaseRequestHandler):
             self.redirect('/course/%s' % courseID)
         except Exception as e:
             print e
+
+

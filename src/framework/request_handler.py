@@ -43,26 +43,3 @@ class BaseRequestHandler(RequestHandler):
         template_html = jinja_template.render(kwargs)
 
         self.response.out.write(template_html)
-
-
-
-    # #TODO: MOVE THIS
-    # @decorator.oauth_required
-    # def getCourses(self):
-    #     # Call the Classroom API
-    #     print 'GET COURSES'
-    #     try:
-    #         results = service.courses().list(pageSize=10).execute(http=decorator.http())
-
-    #         # print'/|'*30
-    #         # print results
-    #         # print'/|'*30
-
-    #         # if results:
-    #         #     enrolled_courses = results.get('courses', [])
-    #         #     return  enrolled_courses
-
-    #     except client.AccessTokenRefreshError as e:
-    #         print 'CLIENT ACCESS TOKEN REFRESH ERROR'
-    #         print e
-    #         # self.redirect('/')

@@ -24,6 +24,8 @@ app = WSGIApplication(
         Route('/content/<courseId>', handler='src.app.content.ContentHandler'),
 
         Route('/invite/student/<courseID>', handler='src.app.invite.StudentInviteHandler'),
+        Route('/invite/teacher/<courseID>', handler='src.app.invite.TeacherInviteHandler'),
+        
         
         
         Route(decorator.callback_path, decorator.callback_handler()),

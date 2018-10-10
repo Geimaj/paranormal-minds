@@ -119,10 +119,12 @@
         <div id="options-tab">
          
           <ul>
+            {% if isTeacher %}
             <li><a href="/course/{{courseId}}/details">Update course details</a></li>
+            <li><a href="/invite/teacher/{{ courseId }}">Invite teachers</a></li>
+            {% endif %}
             <li><a href="/invite/student/{{ courseId }}">Invite students</a></li>
-            <li><a href="">Invite lecturers</a></li>
-            <li><a href="">Delete course</a></li>
+            <li><a href="">Leave course</a></li>
             
           </ul>
 

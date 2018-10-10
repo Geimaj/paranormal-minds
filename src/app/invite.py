@@ -6,7 +6,8 @@ class StudentInviteHandler(BaseRequestHandler):
     def get(self, courseID):
 
         template_parms = {
-            'courseID': courseID
+            'courseID': courseID,
+            'inviteType': 'student'            
         }
 
         self.render('invite/invite.html', **template_parms)
@@ -28,8 +29,38 @@ class StudentInviteHandler(BaseRequestHandler):
             # create invite object
             invite = service.invitations().create(body=student).execute(http=decorator.http())
 
-            # invite = service.invitations().create()
+            self.redirect('/course/%s' % courseID)
+        except Exception as e:
+            print e
 
-            print invite
+
+class TeacherInviteHandler(BaseRequestHandler):
+    @decorator.oauth_required
+    def get(self, courseID):
+
+        template_parms = {
+            'courseID': courseID,
+            'inviteType': 'teacher'
+        }
+
+        self.render('invite/invite.html', **template_parms)
+        
+    @decorator.oauth_required
+    def post(self, courseID):
+
+        # get data from form
+        email = self.request.POST.get('email')
+
+        teacher = {
+            'userId': email,
+            'courseId': courseID,
+            'role': 'TEACHER'
+        }
+
+        try:
+            # create invite object
+            invite = service.invitations().create(body=teacher).execute(http=decorator.http())
+
+            self.redirect('/course/%s' % courseID)
         except Exception as e:
             print e
