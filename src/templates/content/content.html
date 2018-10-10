@@ -5,7 +5,7 @@
 
     <form method="post" action="/content/createAssignment">
         <hr>
-            <input type="hidden" name="courseId" value="{{courseId}}"
+            <input type="hidden" name="courseId" value="{{courseId}}">
             <label for="assTitle"><b>Assignment</b></label>
             <input type="text" placeholder="Enter Assignment Title" name="assTitle" id="assTitle" required>
             <br><br>
@@ -19,8 +19,6 @@
             <option value="ASSIGNMENT">Assignment</option>
             <option value="SHORT_ANSWER_QUESTION">Short Question</option>
         </select>
-  <br><br>
-        <br>
         <hr>
          <button type="submit" class="createAbtn" formmethod="post">Create Assignment</button>
     </form>

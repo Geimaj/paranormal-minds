@@ -1,0 +1,47 @@
+// @import "main.scss";
+
+.courses {
+
+  width: 90%;
+  margin: 5% auto;
+
+  .top-bar {
+    // display: flex;
+    width: 100%;
+
+    button {
+     margin:0 2rem;
+    }
+  }
+
+  &-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+
+    .course-item {
+      min-width: 500px;
+      margin: 1rem;
+      flex: 1;
+      background: $primaryLight;
+      border-radius: 6px;
+      padding: 1rem;
+
+      &:hover{
+        // border: 1px solid gray;
+        background: darken($primaryLight, 10);
+      }
+
+      color: black;
+
+      a {
+        color: black;
+        text-decoration: none;
+      }
+      
+    }
+
+  }
+}
+

@@ -1,33 +1,39 @@
 {% extends "base.html" %}
 
 {% block content %}
-<nav class="wrapper">
+<nav class="navbar">
         <ul>
-               {% if username %}
-                <li id="name"><a href="/">{{username}}'s classroom</a></li>
-                {% else %}
-                <li><a href="/">Home</a></li>
-                {% endif %}
-                {% if login_url %}
-                  <li><a href="{{ login_url }}">Sign in</a></li>
-                {% endif %}
+                <span>
 
-                {% if logout_url %}
-                 <li><a href="{{ logout_url }}">Sign out</a></li>
-                {% endif %}
+                        {% if username %}
+                        <li id="name"><a href="/">{{username}}'s classroom</a></li>
+                        {% else %}
+                        <li><a href="/">Home</a></li>
+                        {% endif %}
+                </span>
+                <span>
 
+                        {% if login_url %}
+                        <li><a href="{{ login_url }}">Sign in</a></li>
+                        {% endif %}
+                        
+                        {% if logout_url %}
+                        <li><a href="{{ logout_url }}">Sign out</a></li>
+                        {% endif %}
+                </span>
+                        
         </ul>
 
 
 </nav>
 
-<div class="sidebar">
+<div class="sidebar one columns">
         <ul class="course-list-sidebar">
                 <li><a href="/courses">Courses</a></li>
         </ul>
 </div>
 
-<div id="page_content">
+<div id="page-content" class="eleven columns">
 
 {% block page_content %}
 {% endblock %}

@@ -10,57 +10,75 @@
 
   </div>
 
-  <div class="tab-container">
-
-    <input class="tabs" id="tab1" type="radio" name="tabs">
-    <label style="margin-left: 13%" for="tab1">ANNOUNCEMENTS</label>
-
-    <input class="tabs" id="tab2" type="radio" name="tabs">
-    <label class="radio-input" for="tab2">CONTENT</label>
-
-    <input class="tabs" id="tab3" type="radio" name="tabs">
-    <label class="radio-input" for="tab3">DISCUSSION</label>
-
-
-
-    <!-- announcements -->
-    <section id="content1">
-      <div class="sliderz">
-        <button onclick="location.href = '/announcements/create/{{ courseId }}'"> Create announcement </button>
-        <div id="announcements">
-
-          {% if announcements %} 
-            {% for announcement in announcements %}
-
-            <div class="announcement">
-              <h1>{{ announcement.title }}</h1>
-              <p>{{announcement.content }}</p>
-              <aside>{{announcement.ownerEmail}}</aside>
+  <ul class="tabs" role="tablist">
+    <li>
+      <input type="radio" name="tabs" id="tab1" checked />
+      <label for="tab1" role="tab" aria-selected="true" aria-controls="panel1" tabindex="0">Announcemnts</label>
+      <div id="tab-content1" class="tab-content" role="tabpanel" aria-labelledby="description" aria-hidden="false">
+        <div>
+            <button onclick="location.href = '/announcements/create/{{ courseId }}'"> Create announcement </button>
+            <div id="announcements">
+    
+              {% if announcements %} 
+                {% for announcement in announcements %}
+    
+                <div class="announcement">
+                  <h1>{{ announcement.title }}</h1>
+                  <p>{{announcement.content }}</p>
+                  <aside>{{announcement.ownerEmail}}</aside>
+                </div>
+    
+                {% endfor %}
+              {% else %}
+                No announcements yet..
+              {% endif %}
             </div>
-
-            {% endfor %}
-          {% else %}
-            No announcements yet..
-          {% endif %}
         </div>
       </div>
-    </section>
+    </li>
 
-    <!-- content -->
-    <section id="content2">
-      <div class="sliderz">
-        <a href="/content/{{courseId}}">Add Content</a>
+    <li>
+      <input type="radio" name="tabs" id="tab2" />
+      <label for="tab2" role="tab" aria-selected="false" aria-controls="panel2" tabindex="0">Content</label>
+      <div id="tab-content2" class="tab-content" role="tabpanel" aria-labelledby="specification" aria-hidden="true">
+        <div>
+          <a href="/content/{{courseId}}">Add Content</a>
+        </div>
       </div>
-    </section>
+    </li>
 
-    <!-- discussions -->
-    <section id="content3">
-      <div class="sliderz">
-        <p>Some shit on Discussion</p>
+    <li>
+      <input type="radio" name="tabs" id="tab3" />
+      <label for="tab3" role="tab" aria-selected="false" aria-controls="panel2" tabindex="0">Discussion</label>
+      <div id="tab-content2" class="tab-content" role="tabpanel" aria-labelledby="specification" aria-hidden="true">
+        <div>
+          <p>Some shit on Discussion</p>
+        </div>
       </div>
-    </section>
+    </li>
 
-  </div>
+    <li>
+      <input type="radio" name="tabs" id="tab4" />
+      <label for="tab4" role="tab" aria-selected="false" aria-controls="panel2" tabindex="0">Options</label>
+      <div id="tab-content2" class="tab-content" role="tabpanel" aria-labelledby="specification" aria-hidden="true">
+        <div id="options-tab">
+         
+          <ul>
+            <li><a href="/course/{{courseId}}/details">Update course details</a></li>
+            <li><a href="">Invite students</a></li>
+            <li><a href="">Invite lecturers</a></li>
+            <li><a href="">Delete course</a></li>
+            
+          </ul>
+
+        </div>
+      </div>
+    </li>
+
+
+  </ul>
+
+  <br style="clear: both;" />
 
 </div>
 

@@ -22,8 +22,7 @@ class CourseHandler(BaseRequestHandler):
 
             # fetch announcements for this course
             announcements = models.Announcement.get_by_courseID(id)
-            print announcements
-
+            
             template_parms = {
                 'course': course,
                 'content': content,
@@ -93,3 +92,12 @@ class JoinCourse(BaseRequestHandler):
 
         self.response.out.write('join...')
 
+
+class CourseDetailsHandler(BaseRequestHandler):
+    def get(self, courseId):
+
+        template_parms = {
+            'id', courseId
+        }
+
+        self.render('course/details.html', **template_parms)
