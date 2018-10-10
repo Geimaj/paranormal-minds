@@ -11,6 +11,7 @@ class CoursesHandler(BaseRequestHandler):
 
 
         template_parms = {
+            'title': 'My Courses',
             'courses': courses
         }
 

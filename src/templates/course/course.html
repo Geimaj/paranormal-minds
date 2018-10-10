@@ -128,7 +128,7 @@
             
           </ul>
 
-          <button onclick="">Show class code</button>
+          <button onclick="showEnrollmentCode(true)">Show class code</button>
 
         </div>
       </div>
@@ -139,8 +139,29 @@
 
   <br style="clear: both;" />
 
+  <div id="course-code">
+      <button onclick="showEnrollmentCode(false)">&times;</button>
+    <h1>
+      {{ course['enrollmentCode'] }}
+    </h1>
+  </div>
+
 </div>
 
 
+{% endblock %}
+
+
+{% block scripts %}
+
+<script>
+  function showEnrollmentCode(bool){
+    if (bool){
+      document.querySelector('#course-code').style.display = 'block'
+    } else {
+      document.querySelector('#course-code').style.display = 'none'      
+    }
+  }
+</script>
 
 {% endblock %}

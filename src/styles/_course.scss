@@ -84,6 +84,23 @@
     }
   }
 
+  #course-code {
+    position: absolute;
+    width: 70%;
+    min-height: 40%;
+    margin: 0 auto;
+    background: darken($background, 30);
+    top: 20%;
+    z-index: 3;
+    color: white;
+    display: none;
+
+    button {
+      color: white;
+    }
+
+  }
+
 
 
 }

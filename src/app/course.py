@@ -43,6 +43,7 @@ class CourseHandler(BaseRequestHandler):
             print isTeacher
 
             template_parms = {
+                'title': course['name'],
                 'isTeacher': isTeacher,
                 'course': course,
                 'content': content,

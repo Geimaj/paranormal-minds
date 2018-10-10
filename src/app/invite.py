@@ -39,6 +39,7 @@ class TeacherInviteHandler(BaseRequestHandler):
     def get(self, courseID):
 
         template_parms = {
+            'title': 'Invite',
             'courseID': courseID,
             'inviteType': 'teacher'
         }
