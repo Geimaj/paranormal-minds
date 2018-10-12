@@ -77,7 +77,7 @@
     <li>
       <input type="radio" name="tabs" id="tab3" />
       <label for="tab3" role="tab" aria-selected="false" aria-controls="panel2" tabindex="0">Discussion</label>
-      <div id="tab-content2" class="tab-content" role="tabpanel" aria-labelledby="specification" aria-hidden="true">
+      <div id="tab-content3" class="tab-content" role="tabpanel" aria-labelledby="specification" aria-hidden="true">
         <div>
           <p>Some shit on Discussion</p>
         </div>
@@ -87,8 +87,8 @@
     <li>
       <input type="radio" name="tabs" id="tab5" />
       <label for="tab5" role="tab" aria-selected="false" aria-controls="panel2" tabindex="0">Members</label>
-      <div id="tab-content2" class="tab-content" role="tabpanel" aria-labelledby="specification" aria-hidden="true">
-        <div id="options-tab">
+      <div id="tab-content4" class="tab-content" role="tabpanel" aria-labelledby="specification" aria-hidden="true">
+        <div id="options-tab2">
           <H2>Members</H2>
 
           <h4>Teachers</h4>
@@ -117,7 +117,7 @@
     <li>
       <input type="radio" name="tabs" id="tab4" />
       <label for="tab4" role="tab" aria-selected="false" aria-controls="panel2" tabindex="0">Options</label>
-      <div id="tab-content2" class="tab-content" role="tabpanel" aria-labelledby="specification" aria-hidden="true">
+      <div id="tab-content5" class="tab-content" role="tabpanel" aria-labelledby="specification" aria-hidden="true">
         <div id="options-tab">
          
           <ul>
@@ -127,7 +127,6 @@
             {% endif %}
             <li><a href="/invite/student/{{ courseId }}">Invite students</a></li>
             <li><a href="/course/{{courseId}}/leave">Leave course</a></li>
-            
           </ul>
 
           <button onclick="showEnrollmentCode(true)">Show class code</button>
