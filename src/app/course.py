@@ -23,6 +23,10 @@ class CourseHandler(BaseRequestHandler):
             # fetch students for this course
             student_results = service.courses().students().list(courseId=id).execute(http=decorator.http())
 
+            # fetch content for this course
+            content_results = service.courses().courseWork().list(courseId=id).execute(http=decorator.http())
+
+
             #get data we are inretested in from api results
             students = []
             teachers = []
@@ -30,11 +34,12 @@ class CourseHandler(BaseRequestHandler):
             try:
                 students = student_results['students']
                 teachers = teacher_results['teachers']
+                content = content_results['courseWork']
             except Exception as e:
                 print e
 
-            #fetch content for this course
-            # content = service.courses().courseWork().list(courseId=id, courseWorkStates="PUBLISHED").execute(http=decorator.http())
+            self.response.out.write(content_results)
+            self.response.out.write(content)
 
             # fetch announcements for this course
             announcements = models.Announcement.get_by_courseID(id)
@@ -49,7 +54,7 @@ class CourseHandler(BaseRequestHandler):
                 'title': course['name'],
                 'isTeacher': isTeacher,
                 'course': course,
-                'content': content,
+                'content': content_results['courseWork'],
                 'courseId' : id,
                 'announcements': announcements,
                 'teachers': teachers,

@@ -69,10 +69,25 @@
       <label for="tab2" role="tab" aria-selected="false" aria-controls="panel2" tabindex="0">Content</label>
       <div id="tab-content2" class="tab-content" role="tabpanel" aria-labelledby="specification" aria-hidden="true">
         <div>
-          <a href="/content/{{courseId}}">Add Content</a>
+          <button onclick="location.href = '/content/{{ courseId }}'">Create Content</button>
+          <div class="announcement">
+
+            <!--{{ content }}-->
+
+            {% if content %}
+              {% for item in content %}
+
+              <div class="announcement">
+                <h1>{{ item.title }}</h1>
+                <p>{{ item.description }}</p>
+                <aside>{{ item.workType }}</aside>
+               {% endfor %}
+            {% else %}
+                No Content yet..
+            {% endif %}
+              </div>
+          </div>
         </div>
-      </div>
-    </li>
 
     <li>
       <input type="radio" name="tabs" id="tab3" />
@@ -108,8 +123,6 @@
               <li>{{student['profile']['name']['fullName']}}</li>
             {% endfor %}
           </ul>
-
-
         </div>
       </div>
     </li>
