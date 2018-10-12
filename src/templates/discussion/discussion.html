@@ -9,20 +9,16 @@
 <p>Course Discussion</p>
 
 <hr>
-<form method="post" action="/discussion/add">
+<form method="post" action="/discussion/{{ courseID }}">
 
 
     <label for="dissTopic"><b>Discussion Topic</b></label>
     <input type="text" name="topic" id="dissTopic" required>
     <br>
-        <br>
-    <textarea rows="30" cols="150">
-        Chat YOLO SWAG
-    </textarea>
+
     <br>
-        <br>
     <label for="messageText"><b></b></label>
-        <input type="text" placeholder="Send a Message" name="message" id="messageText" required>
+        <input type="text" placeholder="Topic description" name="description" id="messageText" required>
     <br>
         <br>
      <button type="submit" class="sendMbtn" formmethod="post">Send</button>

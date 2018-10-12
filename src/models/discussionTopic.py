@@ -1,14 +1,14 @@
 from src.models.baseModel import BaseModel, decorator, client, service, ndb
 
 
-class discussion(BaseModel):
+class DiscussionTopic(BaseModel):
 
-    discussionPointId = ndb.StringProperty(default=None)
-    content = ndb.StringProperty(default=None)    
+    title = ndb.StringProperty(default=None)
+    description = ndb.StringProperty(default=None)    
     timestamp = ndb.DateTimeProperty(auto_now=True)
     ownerId = ndb.StringProperty(default=None)
+    courseId = ndb.StringProperty(default=None)
     ownerEmail = ndb.StringProperty(default=None)
-
 
     
 
