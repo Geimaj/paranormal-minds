@@ -26,7 +26,7 @@ class CreateAssignmentHandler(BaseRequestHandler):
                 'title' : assTitle,
                 'description' : assDescription,
                 'workType' : workTypes,
-                'state' : 'PUBLISHED'
+                'state': "PUBLISHED",
             }
 
             course_work = service.courses().courseWork().create(courseId=id, body=course_work).execute(http=decorator.http())

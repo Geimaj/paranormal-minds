@@ -1,41 +1,45 @@
-from src.framework.api import service, decorator
+from src.framework.api import service, decorator, users
 from src.framework.request_handler import BaseRequestHandler
 
 from google.appengine.runtime import DeadlineExceededError
 
+import src.models as models
+
 
 class Discussion(BaseRequestHandler):
-    def get(self):
+    @decorator.oauth_required
+    def get(self, courseID):
 
 
         template_parms = {
+            'courseID': courseID
         }
 
         self.render('discussion/discussion.html', **template_parms)
 
-    def post(self):
-        {
+    @decorator.oauth_required
+    def post(self, courseID):
+        # get data from form
+        topic = self.request.POST.get('topic')
+        description = self.request.POST.get('description')
 
-        }
-
-class AddDiscussion(BaseRequestHandler):
-
-    def post(self):
-        try:
-            message = self.request.POST.get('message')
+        userProfile = users.get_current_user()
+        userId = userProfile.user_id()
 
 
-            discussion =  {
-                'Usermessage': message,
-            }
+        email = userProfile.email()
 
-            self.response.out.write(message)
+        # create DiscussionTopic object
+        discussionTopic = models.DiscussionTopic()
 
-            # discussion = service.discussion().create(body=discussion).execute(http=decorator.http())
-            # self.redirect('/' + discussion.id)
+        # pass in data from form
+        discussionTopic.title = topic
+        discussionTopic.description = description
+        discussionTopic.ownerId = userId
+        discussionTopic.ownerEmail = email
+        discussionTopic.courseId = courseID
 
-        except DeadlineExceededError as e:
-            print 'EXPECTION' * 20
-            print e
+        # save DiscussionTopic Object to DB
+        discussionTopic.put()
 
-        print"fuck you"
+        self.redirect('/course/%s' % courseID)

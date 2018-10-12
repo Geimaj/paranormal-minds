@@ -15,7 +15,6 @@
       {% endfor %}
     </h4>
     <p class='description'>{{course.description}} </p>
-    
 
     <p>
       <ul>
@@ -89,12 +88,31 @@
           </div>
         </div>
 
+    <!-- discussion -->
     <li>
       <input type="radio" name="tabs" id="tab3" />
       <label for="tab3" role="tab" aria-selected="false" aria-controls="panel2" tabindex="0">Discussion</label>
       <div id="tab-content3" class="tab-content" role="tabpanel" aria-labelledby="specification" aria-hidden="true">
         <div>
-          <p>Some shit on Discussion</p>
+
+          <a href="/discussion/{{courseId}}">Add discussion topic</a>
+
+          <div id="discussionTopics">
+
+            {% for topic in discussionTopics %}
+
+            <!-- add link to page for disussion topic -->
+              <div class="discussionTopic">
+                <h2>{{topic.title}}</h2>  
+                <p>{{topic.description}}</p>
+                <p>Posted by: {{ topic.ownerEmail}} on {{ topic.timestamp }}</p>
+              </div>
+            
+              <hr>
+              {% endfor %}
+
+          </div>
+
         </div>
       </div>
     </li>
@@ -103,7 +121,7 @@
       <input type="radio" name="tabs" id="tab5" />
       <label for="tab5" role="tab" aria-selected="false" aria-controls="panel2" tabindex="0">Members</label>
       <div id="tab-content4" class="tab-content" role="tabpanel" aria-labelledby="specification" aria-hidden="true">
-        <div id="options-tab2">
+        <div id="options-tab">
           <H2>Members</H2>
 
           <h4>Teachers</h4>

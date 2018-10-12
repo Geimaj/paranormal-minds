@@ -23,23 +23,22 @@ class CourseHandler(BaseRequestHandler):
             # fetch students for this course
             student_results = service.courses().students().list(courseId=id).execute(http=decorator.http())
 
+
             # fetch content for this course
             content_results = service.courses().courseWork().list(courseId=id).execute(http=decorator.http())
-
 
             #get data we are inretested in from api results
             students = []
             teachers = []
             content = []
+            discussionTopics = []
             try:
                 students = student_results['students']
                 teachers = teacher_results['teachers']
                 content = content_results['courseWork']
+                discussionTopics = models.DiscussionTopic.query().fetch()
             except Exception as e:
                 print e
-
-            self.response.out.write(content_results)
-            self.response.out.write(content)
 
             # fetch announcements for this course
             announcements = models.Announcement.get_by_courseID(id)
@@ -48,7 +47,6 @@ class CourseHandler(BaseRequestHandler):
             userId = userProfile['id']
 
             isTeacher = models.Course.isUserTeacher(id, userId)
-            print isTeacher
 
             template_parms = {
                 'title': course['name'],
@@ -58,7 +56,8 @@ class CourseHandler(BaseRequestHandler):
                 'courseId' : id,
                 'announcements': announcements,
                 'teachers': teachers,
-                'students': students
+                'students': students,
+                'discussionTopics': discussionTopics
             }
 
             self.render('course/course.html', **template_parms)

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "gulp styles & gulp watch & dev_appserver.py --port 7777 .",
+    "start": "gulp styles & gulp watch & dev_appserver.py --port 7777 --host=0.0.0.0 --enable_host_checking=false .",
     "deploy": "gulp styles & gcloud --project=paranormal-minds app deploy app.yaml --verbosity=info"
   },
   "repository": {
@@ -24,3 +24,4 @@
     "gulp-sass": "^4.0.1"
   }
 }
+
