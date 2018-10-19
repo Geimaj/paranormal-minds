@@ -12,8 +12,21 @@
 <form id = coursediscussionForm  action="/courseDiscussion/{{ course.id }}" method="post";  >
 
 
+          <h4>Discussion</h4>
+         {% for uMessage in discussionItem %}
 
-    <input type="text" name="discussionItems" id="discussionItem" style="font-size: 18pt; height: 440px; width:580px; ">
+            <div id="discussionItem">
+
+            <!-- add link to page for disussion topic -->
+              <div class="discussionItem">
+                <p>{{uMessage.content}}</p>
+                <p>Posted by: {{ uMessage.ownerEmail}} on {{ uMessage.timestamp }}</p>
+                </a>
+
+              </div>
+            </div>
+              <hr>
+              {% endfor %}
     <br>
 
     <br>
