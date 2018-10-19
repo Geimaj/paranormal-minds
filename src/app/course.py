@@ -30,17 +30,24 @@ class CourseHandler(BaseRequestHandler):
             students = []
             teachers = []
             content = []
-            discussionTopics = []
+            discussionTopic = []
             try:
+                discussionTopic = models.DiscussionTopic.query().fetch()
                 students = student_results['students']
                 teachers = teacher_results['teachers']
-                discussionTopics = models.DiscussionTopic.query().fetch()
+                print "HERE" *20
             except Exception as e:
+                print "ERROR" *20
                 print e
 
             # fetch announcements for this course
             announcements = models.Announcement.get_by_courseID(id)
-            
+
+
+            print
+            print discussionTopic
+            print
+
             userProfile = service.userProfiles().get(userId='me').execute(http=decorator.http())
             userId = userProfile['id']
 
@@ -55,7 +62,7 @@ class CourseHandler(BaseRequestHandler):
                 'announcements': announcements,
                 'teachers': teachers,
                 'students': students,
-                'discussionTopics': discussionTopics
+                'discussionTopics': discussionTopic,
             }
 
             self.render('course/course.html', **template_parms)

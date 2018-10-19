@@ -10,7 +10,11 @@ app = WSGIApplication(
         Route('/announcements/create/<courseId>', handler='src.app.announcements.Announcements'),
         Route('/announcements', handler='src.app.announcements.Announcements'),
         
-        Route('/discussion/<courseID>', handler='src.app.discussion.Discussion'),
+        Route('/discussion/create/<courseId>', handler='src.app.discussion.Discussion'),
+        Route('/discussion', handler='src.app.discussion.Discussion'),
+
+        Route('/courseDiscussion/<courseId>', handler='src.app.discussionItem.DiscussionItem'),
+        Route('/courseDiscussion', handler='src.app.discussionItem.DiscussionItem'),
         
         Route('/course/create', handler='src.app.course.CreateCourse'),
         Route('/course/join', handler='src.app.course.JoinCourse'),
