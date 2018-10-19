@@ -46,6 +46,7 @@ class CourseHandler(BaseRequestHandler):
 
             print
             print discussionTopic
+            print discussionItem
             print
 
             userProfile = service.userProfiles().get(userId='me').execute(http=decorator.http())
