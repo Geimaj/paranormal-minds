@@ -236,6 +236,8 @@ class RemoveStudentHandler(BaseRequestHandler):
             'course': course
         }
 
+        
+
         self.render('course/remove.html', **template_parms)
 
         @decorator.oauth_required
