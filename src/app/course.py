@@ -60,7 +60,7 @@ class CourseHandler(BaseRequestHandler):
                 'title': course['name'],
                 'isTeacher': isTeacher,
                 'course': course,
-                'content': content_results['courseWork'],
+                'content': content,
                 'courseId' : id,
                 'announcements': announcements,
                 'teachers': teachers,
@@ -215,7 +215,7 @@ class LeaveCourseHandler(BaseRequestHandler):
             print userProfile
 
             # do I remove myself as a student or as a teacher
-            result = ''
+            # result = ''
             # if models.Course.isUserTeacher(courseID, userId):
             #     result = service.courses().teachers().delete(courseId=courseID, userId="me").execute(http=decorator.http())
             # else:
