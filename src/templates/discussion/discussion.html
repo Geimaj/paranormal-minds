@@ -9,7 +9,7 @@
 <p>Course Discussion</p>
 
 <hr>
-<form method="post" action="/discussion/{{ courseID }}">
+<form id = discussionForm  action="/discussion/create/{{ course.id }}" method="post">
 
 
     <label for="dissTopic"><b>Discussion Topic</b></label>
@@ -21,7 +21,7 @@
         <input type="text" placeholder="Topic description" name="description" id="messageText" required>
     <br>
         <br>
-     <button type="submit" class="sendMbtn" formmethod="post">Send</button>
+     <button type="submit"> Submit </button>
 <hr>
 
 </form>

@@ -10,12 +10,17 @@ app = WSGIApplication(
         Route('/announcements/create/<courseId>', handler='src.app.announcements.Announcements'),
         Route('/announcements', handler='src.app.announcements.Announcements'),
         
-        Route('/discussion/<courseID>', handler='src.app.discussion.Discussion'),
+        Route('/discussion/create/<courseId>', handler='src.app.discussion.Discussion'),
+        Route('/discussion', handler='src.app.discussion.Discussion'),
+
+        Route('/courseDiscussion/<courseId>', handler='src.app.discussionItem.DiscussionItem'),
+        Route('/courseDiscussion', handler='src.app.discussionItem.DiscussionItem'),
         
         Route('/course/create', handler='src.app.course.CreateCourse'),
         Route('/course/join', handler='src.app.course.JoinCourse'),
         Route('/course/<courseID>/details', handler='src.app.course.CourseDetailsHandler'),
-        Route('/course/<courseID>/leave', handler='src.app.course.LeaveCourseHandler'),        
+        Route('/course/<courseID>/leave', handler='src.app.course.LeaveCourseHandler'),
+        Route('/course/<courseID>/remove', handler='src.app.course.RemoveStudentHandler'),
         Route('/course/<id>', handler='src.app.course.CourseHandler'),
         
         Route('/courses', handler='src.app.courses.CoursesHandler'),
