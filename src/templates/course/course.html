@@ -95,17 +95,23 @@
       <div id="tab-content3" class="tab-content" role="tabpanel" aria-labelledby="specification" aria-hidden="true">
         <div>
 
-          <a href="/discussion/{{courseId}}">Add discussion topic</a>
+          <!--<a href="/discussion/{{courseId}}">Add discussion topic</a>-->
+          <button onclick="location.href = '/discussion/create/{{ courseId }}'"> Create Discussion </button>
 
           <div id="discussionTopics">
+
 
             {% for topic in discussionTopics %}
 
             <!-- add link to page for disussion topic -->
+            <a href="/courseDiscussion/{{ course.id }}">
               <div class="discussionTopic">
                 <h2>{{topic.title}}</h2>  
                 <p>{{topic.description}}</p>
                 <p>Posted by: {{ topic.ownerEmail}} on {{ topic.timestamp }}</p>
+                <a href="/courseDiscussion/{{ course.id }}">
+                </a>
+
               </div>
             
               <hr>

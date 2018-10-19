@@ -3,7 +3,7 @@ import json as simplejson
 import googleapiclient.errors as errors
 from google.appengine.runtime import DeadlineExceededError
 from google.appengine.api import urlfetch
-urlfetch.set_default_fetch_deadline(45)
+urlfetch.set_default_fetch_deadline(100)
 
 from src.framework.api import service, decorator
 from src.framework.request_handler import BaseRequestHandler
@@ -31,18 +31,26 @@ class CourseHandler(BaseRequestHandler):
             students = []
             teachers = []
             content = []
-            discussionTopics = []
+            discussionTopic = []
             try:
+                discussionTopic = models.DiscussionTopic.query().fetch()
                 students = student_results['students']
                 teachers = teacher_results['teachers']
                 content = content_results['courseWork']
                 discussionTopics = models.DiscussionTopic.query().fetch()
+                print "HERE" *20
             except Exception as e:
+                print "ERROR" *20
                 print e
 
             # fetch announcements for this course
             announcements = models.Announcement.get_by_courseID(id)
-            
+
+
+            print
+            print discussionTopic
+            print
+
             userProfile = service.userProfiles().get(userId='me').execute(http=decorator.http())
             userId = userProfile['id']
 
@@ -57,7 +65,7 @@ class CourseHandler(BaseRequestHandler):
                 'announcements': announcements,
                 'teachers': teachers,
                 'students': students,
-                'discussionTopics': discussionTopics
+                'discussionTopics': discussionTopic,
             }
 
             self.render('course/course.html', **template_parms)
@@ -100,10 +108,9 @@ class CreateCourse(BaseRequestHandler):
 
             course = service.courses().create(body=course).execute(http=decorator.http())
             #TODO redirect to new course?
-            self.redirect('/course/' + course.id)
+            self.redirect('/course/' + course['id'])
 
-        except DeadlineExceededError  as e:
-            print 'EXPECTION' * 20
+        except DeadlineExceededError as e:
             print e
 
 

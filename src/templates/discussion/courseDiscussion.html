@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block page_content %}
+    <div class="container">
+<h1>Discussion</h1>
+<h2>
+    This is the Discussion Page
+</h2>
+<p>Course Discussion</p>
+
+<hr>
+<form id = coursediscussionForm  action="/courseDiscussion/{{ course.id }}" method="post";  >
+
+
+
+    <input type="text" name="discussionItems" id="discussionItem" style="font-size: 18pt; height: 440px; width:580px; ">
+    <br>
+
+    <br>
+    <label for="messageText"><b></b></label>
+        <input type="text" placeholder="Send a Message" name="uMessage" id="messageText" required>
+    <br>
+        <br>
+     <button type="submit"> Send </button>
+<hr>
+
+</form>
+
+</div>
+{% endblock %}

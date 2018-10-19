@@ -6,7 +6,7 @@
         <h1>Enter the email of the {{inviteType}} you would like to invite:</h1>
     </div>
     <hr>
-    <form method="post" action="/invite/student/{{ courseID }}">
+    <form method="post" action="/invite/{{inviteType}}/{{ courseID }}">
         <div class="row">
             <label for="email">Email</label>
             <input class="seven columns"  type="email" name="email" required>
