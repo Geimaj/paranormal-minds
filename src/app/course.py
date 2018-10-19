@@ -34,11 +34,11 @@ class CourseHandler(BaseRequestHandler):
             discussionTopic = []
             try:
                 discussionTopic = models.DiscussionTopic.query().fetch()
+                print "HERE" *20
                 students = student_results['students']
                 teachers = teacher_results['teachers']
                 content = content_results['courseWork']
                 discussionTopics = models.DiscussionTopic.query().fetch()
-                print "HERE" *20
             except Exception as e:
                 print "ERROR" *20
                 print e

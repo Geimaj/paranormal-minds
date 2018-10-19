@@ -1,7 +1,5 @@
 import logging
 import os
-import cloudstorage as gcs
-import webapp2
 
 from google.appengine.api import app_identity
 
@@ -32,26 +30,6 @@ class ContentHandler(BaseRequestHandler):
             id = self.request.POST.get('courseId')
             assTitle = self.request.POST.get('assTitle')
             assDescription = self.request.POST.get('assDescription')
-            file = self.request.POST.get('file')
-
-            # print
-            # print '--------'
-            # print
-            # print file['file']
-            # print '--------'
-            # print
-            # print
-
-            file_metadata = {
-                "name": 'Capture.jpg'
-            }
-
-            # upload file to google drive
-            fileUpload = driveService.files().create(body=file_metadata,
-                                        media_body=file,
-                                        fields="id").execute(http=decorator.http())
-
-            print fileUpload
 
             course_work = {
                 'title': assTitle,
@@ -60,25 +38,9 @@ class ContentHandler(BaseRequestHandler):
                 'state': "PUBLISHED",
             }
 
-<<<<<<< Updated upstream
+            course_work = service.courses().courseWork().create(courseId=id, body=course_work).execute(http=decorator.http())
 
-
-            bucket_name = os.environ.get('BUCKET_NAME',
-                               app_identity.get_default_gcs_bucket_name())
-
-            self.response.headers['Content-Type'] = 'text/plain'
-            self.response.write('Demo GCS Application running from Version: '
-                                + os.environ['CURRENT_VERSION_ID'] + '\n')
-            self.response.write('Using bucket name: ' + bucket_name + '\n\n')            
-
-
-
-            # course_work = service.courses().courseWork().create(courseId=id, body=course_work).execute(http=decorator.http())
-
-            # self.response.out.write(course_work)
-=======
-            course_work = service.courses().courseWork().create(courseId=id, body=course_work).execute(
-                http=decorator.http())
+            self.response.out.write(course_work)
 
             # get data from form
             # based on the name of the input element in the form
@@ -124,6 +86,4 @@ class SubmissionHandler(BaseRequestHandler):
         template_parms = {
 
         }
->>>>>>> Stashed changes
-
         self.render('content/submission.html', **template_parms)
