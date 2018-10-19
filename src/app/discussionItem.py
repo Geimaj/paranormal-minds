@@ -9,7 +9,7 @@ from google.appengine.api import users
 import src.models as models
 
 
-class Discussion(BaseRequestHandler):
+class DiscussionItem(BaseRequestHandler):
     @decorator.oauth_required
     def get(self, courseId):
 
@@ -19,7 +19,7 @@ class Discussion(BaseRequestHandler):
             'course': course
         }
 
-        self.render('discussion/discussion.html', **template_parms)
+        self.render('discussion/courseDiscussion.html', **template_parms)
 
     @decorator.oauth_required
     def post(self, courseId):
