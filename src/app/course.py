@@ -46,7 +46,6 @@ class CourseHandler(BaseRequestHandler):
 
             print
             print discussionTopic
-            print discussionItem
             print
 
             userProfile = service.userProfiles().get(userId='me').execute(http=decorator.http())
@@ -226,53 +225,3 @@ class LeaveCourseHandler(BaseRequestHandler):
         except Exception as e:
             print e
 
-class RemoveStudentHandler(BaseRequestHandler):
-    @decorator.oauth_required
-    def get(self, courseID):
-        # fetch course by id
-        course = models.Course.get_by_id(courseID)
-
-
-        template_parms = {
-            'course': course
-        }
-
-        self.render('course/remove.html', **template_parms)
-
-        @decorator.oauth_required
-        def post(self, courseID):
-
-            # remove student
-            try:
-                userProfile = service.userProfiles().get(userId='me').execute(http=decorator.http())
-                userId = userProfile['id']
-
-                student_results = service.courses().students().list(courseId=id).execute(http=decorator.http())
-
-                students = []
-
-                try:
-                    students = student_results['students']
-                    print "HERE" * 20
-                except Exception as e:
-                    print "ERROR" * 20
-                    print e
-
-                course = models.Course.get_by_id(courseID)
-                print course
-                print
-                print userProfile
-
-                # do I remove myself as a student or as a teacher
-                result = ''
-                # if models.Course.isUserTeacher(courseID, userId):
-                #     result = service.courses().teachers().delete(courseId=courseID, userId="me").execute(http=decorator.http())
-                # else:
-                result = service.courses().students().delete(courseId=courseID, userId="me").execute(
-                    http=decorator.http())
-
-                print result
-
-                self.redirect('/courses')
-            except Exception as e:
-                print e
