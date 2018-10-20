@@ -15,8 +15,17 @@ class DiscussionItem(BaseRequestHandler):
 
         course = models.Course.get_by_id(courseId)
 
+        discussionItem = []
+
+        try:
+            discussionItem = models.DiscussionItem.query().fetch()
+        except Exception as e:
+            print e
+
+
         template_parms = {
-            'course': course
+            'course': course,
+            'discussionItem': discussionItem
         }
 
         self.render('discussion/courseDiscussion.html', **template_parms)
@@ -24,8 +33,7 @@ class DiscussionItem(BaseRequestHandler):
     @decorator.oauth_required
     def post(self, courseId):
         # get data from form
-        topic = self.request.POST.get('topic')
-        description = self.request.POST.get('description')
+        uMessage = self.request.POST.get('uMessage')
 
         userProfile = users.get_current_user()
         userId = userProfile.user_id()
@@ -34,16 +42,15 @@ class DiscussionItem(BaseRequestHandler):
         email = userProfile.email()
 
         # create DiscussionTopic object
-        discussionTopic = models.DiscussionTopic()
+        discussionItem = models.DiscussionItem()
 
         # pass in data from form
-        discussionTopic.title = topic
-        discussionTopic.description = description
-        discussionTopic.ownerId = userId
-        discussionTopic.ownerEmail = email
-        discussionTopic.courseId = courseId
+        discussionItem.content = uMessage
+        discussionItem.ownerId = userId
+        discussionItem.ownerEmail = email
+        discussionItem.courseId = courseId
 
         # save DiscussionTopic Object to DB
-        discussionTopic.put()
+        discussionItem.put()
 
         self.redirect('/course/%s' % courseId)

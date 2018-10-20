@@ -226,3 +226,4 @@ class LeaveCourseHandler(BaseRequestHandler):
             self.redirect('/courses')
         except Exception as e:
             print e
+
