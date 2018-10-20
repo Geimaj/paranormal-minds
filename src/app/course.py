@@ -3,7 +3,7 @@ import json as simplejson
 import googleapiclient.errors as errors
 from google.appengine.runtime import DeadlineExceededError
 from google.appengine.api import urlfetch
-urlfetch.set_default_fetch_deadline(60)
+urlfetch.set_default_fetch_deadline(100)
 
 from src.framework.api import service, decorator
 from src.framework.request_handler import BaseRequestHandler
@@ -23,8 +23,9 @@ class CourseHandler(BaseRequestHandler):
             # fetch students for this course
             student_results = service.courses().students().list(courseId=id).execute(http=decorator.http())
 
-            #fetch content for this course
-            content_results = service.courses().courseWork().list(courseId=id, courseWorkStates="PUBLISHED").execute(http=decorator.http())
+
+            # fetch content for this course
+            content_results = service.courses().courseWork().list(courseId=id).execute(http=decorator.http())
 
             #get data we are inretested in from api results
             students = []
@@ -33,9 +34,11 @@ class CourseHandler(BaseRequestHandler):
             discussionTopic = []
             try:
                 discussionTopic = models.DiscussionTopic.query().fetch()
+                print "HERE" *20
                 students = student_results['students']
                 teachers = teacher_results['teachers']
-                print "HERE" *20
+                content = content_results['courseWork']
+                discussionTopics = models.DiscussionTopic.query().fetch()
             except Exception as e:
                 print "ERROR" *20
                 print e
@@ -107,8 +110,7 @@ class CreateCourse(BaseRequestHandler):
             #TODO redirect to new course?
             self.redirect('/course/' + course['id'])
 
-        except DeadlineExceededError  as e:
-            print 'EXPECTION' * 20
+        except DeadlineExceededError as e:
             print e
 
 
@@ -213,7 +215,7 @@ class LeaveCourseHandler(BaseRequestHandler):
             print userProfile
 
             # do I remove myself as a student or as a teacher
-            result = ''
+            # result = ''
             # if models.Course.isUserTeacher(courseID, userId):
             #     result = service.courses().teachers().delete(courseId=courseID, userId="me").execute(http=decorator.http())
             # else:

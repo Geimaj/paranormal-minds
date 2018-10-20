@@ -15,7 +15,6 @@
       {% endfor %}
     </h4>
     <p class='description'>{{course.description}} </p>
-    
 
     <p>
       <ul>
@@ -69,10 +68,25 @@
       <label for="tab2" role="tab" aria-selected="false" aria-controls="panel2" tabindex="0">Content</label>
       <div id="tab-content2" class="tab-content" role="tabpanel" aria-labelledby="specification" aria-hidden="true">
         <div>
-          <a href="/content/{{courseId}}">Add Content</a>
+          <button onclick="location.href = '/content/{{ courseId }}'">Create Content</button>
+          <div class="announcement">
+
+            <!--{{ content }}-->
+
+            {% if content %}
+              {% for item in content %}
+
+              <div class="announcement">
+                <h1>{{ item.title }}</h1>
+                <p>{{ item.description }}</p>
+                <aside>{{ item.workType }}</aside>
+               {% endfor %}
+            {% else %}
+                No Content yet..
+            {% endif %}
+              </div>
+          </div>
         </div>
-      </div>
-    </li>
 
     <!-- discussion -->
     <li>
@@ -133,8 +147,6 @@
               <li>{{student['profile']['name']['fullName']}}</li>
             {% endfor %}
           </ul>
-
-
         </div>
       </div>
     </li>
@@ -152,7 +164,7 @@
             {% endif %}
             <li><a href="/invite/student/{{ courseId }}">Invite students</a></li>
             <li><a href="/course/{{courseId}}/leave">Leave course</a></li>
-            
+
           </ul>
 
           <button onclick="showEnrollmentCode(true)">Show class code</button>
