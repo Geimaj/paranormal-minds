@@ -868,7 +868,7 @@ label > .label-body {
 }
 
 ul {
-  list-style: circle inside;
+  list-style: none;
 }
 
 ol {

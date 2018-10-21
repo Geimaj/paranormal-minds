@@ -3,9 +3,8 @@
 <div class="courses">
 
   <div class="top-bar">
-      <button class="u-pull-right" onclick="location.href = '/course/join'"> Join course </button>
-      <button class="u-pull-right"  onclick="location.href = '/course/create'"> Create course </button>
-      <h1 class='title'>Current enrollments</h1>
+      <button class="u-pull-right" onclick="location.href = '/course/create'"> Create course </button>
+      <h1>Current enrollments</h1>
   </div>
 
   <div class="courses-container">
@@ -13,10 +12,10 @@
       {% for course in courses%}
           <div class="course-item">
               <a href="/course/{{ course.id }}">
-                  <h3>{{ course.name }}</h3>
-                  <p>{{ course.description }}</p>
+                  <h2 style="color: darkblue">{{ course.name }}</h2>
+                  <h3 style="color: darkblue">{{ course.description }}</h3>
                   {% if course['teacherFolder'] %}
-                  <a href="{{ course['teacherFolder']['alternateLink'] }}" target="_blank" class="decorated">drive</a>
+                  <a href="{{ course['teacherFolder']['alternateLink'] }}" target="_blank" class="decorated">Google Drive</a>
                   {% endif %}
               </a>
           </div>
