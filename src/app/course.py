@@ -63,7 +63,7 @@ class CourseHandler(BaseRequestHandler):
                 'isTeacher': isTeacher,
                 'course': course,
                 'content': content,
-                'courseId' : id,
+                'courseId': id,
                 'announcements': announcements,
                 'teachers': teachers,
                 'students': students,

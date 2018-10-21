@@ -8,7 +8,7 @@ class CoursesHandler(BaseRequestHandler):
     def get(self):
 
         # courses = models.Course.getCourses()
-        courses = service.courses().list(courseStates=['ACTIVE', 'PROVISIONED']).execute(decorator.http())
+        courses = service.courses().list(courseStates=['ACTIVE', 'PROVISIONED', 'ARCHIVED']).execute(decorator.http())
 
         template_parms = {
             'title': 'My Courses',
