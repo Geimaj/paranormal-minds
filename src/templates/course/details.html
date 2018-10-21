@@ -1,39 +1,37 @@
 {% extends "layout.html" %} {% block page_content %}
 
-    <div id="course-details">
+    <div class="details">
 
         <h1>Edit details for: {{ course.name }}</h1>
         <h4>Last updated: {{ course.updateTime }}</h4>
         <hr>
 
         <form method="post" action="/course/{{ course.id }}/details">
-            <div class="row">
-                <div class="eight columns">
+            <div class="">
+                <div class="">
                     <label for="name">Name</label>
                     <input type="text" name="name" value="{{ course.name }}">
                 </div>
-                <div class="two columns">
+                <div class="">
                     <label for="section">Section</label>
                     <input type="text" name="section" value="{{ course.section }}">
                 </div>
             </div>
 
-            <div class="row">
-                <div class="two columns">
+                <div class="">
                     <label for="description-heading">Description heading</label>
-                    <input class="five columns"  type="text" name="description-heading" value="{{ course.descriptionHeading }}">
+                    <input class=""  type="text" name="description-heading" value="{{ course.descriptionHeading }}">
                 </div>
-                <div class="eight columns">
+                <div class="">
                     <label for="description">Description</label>
-                    <input class="five columns"  type="text" name="description" value="{{ course.description }}">
+                    <input class=""  type="text" name="description" value="{{ course.description }}">
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="two columns">
+
                 
                     <label for="courseState">Course state:</label>
-                    <select class="2 columns" id="courseState" name="courseState">
+            <div style="text-align: center">
+                    <select class="" id="courseState" name="courseState">
                         <option value="" selected disabled hidden>{{ course.courseState }}</option>
                         <option value="ARCHIVED">ARCHIVED</option>
                         <option value="PROVISIONED">PROVISIONED</option>
@@ -41,13 +39,13 @@
                         <option value="ACTIVE">ACTIVE</option>
                         <option value="SUSPENDED">SUSPENDED</option>
                     </select>
-                </div>
-                <div class="two columns">
+            </div>
+
                 
                     <label for="room">Room</label>
-                    <input class="2 columns"  type="text" name="room" value="{{ course.room }}">
-                </div>
-            </div>
+                    <input class=""  type="text" name="room" value="{{ course.room }}">
+
+
             <input class="button-primary" value="Submit" type="submit">
             <input class="button" value="Cancel" type="button" onclick="location.href = '/course/{{ course.id }}'">
 

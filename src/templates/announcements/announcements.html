@@ -4,18 +4,15 @@
         <center>
 
             <div>
-                <h1>Create announcement for {{ course['teacherFolder']['title'] }}</h1>
+                <h1>Create announcement for: {{ course['teacherFolder']['title'] }}</h1>
             </div>
 
-            <p>Enter Announcement title: </p>
-            <input type="text" name="title" size="70">
+            <label>Enter Announcement title: </label>
+            <input type="text" name="title" size="70" style="margin-right: 50%;">
 
-            <p>Enter announcement description: </p>
-            <input type="text" name="description" size="70">
+            <label>Enter announcement description: </label>
+            <input type="text" name="description" size="70"style="margin-right: 50%;">
 
-            <p>Upload file here: </p>
-            <input type="file" />
-            <p>--------------------</p>
             <br>
             <button type="submit"> Submit </button>
             </br>

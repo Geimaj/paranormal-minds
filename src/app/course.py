@@ -58,7 +58,7 @@ class CourseHandler(BaseRequestHandler):
                 'isTeacher': isTeacher,
                 'course': course,
                 'content': content,
-                'courseId' : id,
+                'courseId': id,
                 'announcements': announcements,
                 'teachers': teachers,
                 'students': students,
@@ -228,4 +228,22 @@ class LeaveCourseHandler(BaseRequestHandler):
             self.redirect('/courses')
         except Exception as e:
             print e
+
+
+class StateChangeHandler(BaseRequestHandler):
+    @decorator.oauth_required
+    def get(self, courseID):
+
+        # course = service.courses().get(id=courseID).execute(decorator.http())
+        course = models.Course.get_by_id(courseID)
+        course['courseState'] = 'ACTIVE'
+
+        try:
+            # call api to update course
+            service.courses().update(id=courseID, body=course).execute(http=decorator.http())
+            self.redirect('/course/%s' % courseID)
+        except Exception as e:
+            self.response.out.write('ERROR')
+            self.response.out.write(e)
+
 

@@ -3,33 +3,25 @@
 {% block content %}
 <nav class="navbar">
         <ul>
-                <span>
+            {% if username %}
+            <li id="name"><button class="button-primary" onclick="location.href='/'">{{username}}'s classroom</button></li>
+            {% else %}
+            <li><button class="button-primary" onclick="location.href='/'">Home</button></li>
+            {% endif %}
 
-                        {% if username %}
-                        <li id="name"><a href="/">{{username}}'s classroom</a></li>
-                        {% else %}
-                        <li><a href="/">Home</a></li>
-                        {% endif %}
-                </span>
-                <span>
+            {% if login_url %}
+            <li><button class="button-primary" onclick="location.href='/{{ login_url }}'">Sign in</button></li>
+            {% endif %}
 
-                        {% if login_url %}
-                        <li><a href="{{ login_url }}">Sign in</a></li>
-                        {% endif %}
-                        
-                        {% if logout_url %}
-                        <li><a href="{{ logout_url }}">Sign out</a></li>
-                        {% endif %}
-                </span>
-                        
+            {% if logout_url %}
+            <li><button class="button-primary" onclick="location.href='/{{ logout_url }}'">Sign out</button></li>
+            {% endif %}
         </ul>
-
-
 </nav>
 
 <div class="sidebar one columns">
         <ul class="course-list-sidebar">
-                <li><a href="/courses">Courses</a></li>
+                <li><button class="button-primary" onclick="location.href='/courses'">Courses</button></li>
         </ul>
 </div>
 
