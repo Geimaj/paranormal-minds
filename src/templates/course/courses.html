@@ -4,7 +4,7 @@
 
   <div class="top-bar">
       
-    <select name="courseState">
+    <select id="courseFilter" name="courseState" onchange="filterChanged()">
         <option value="ACTIVE, PROVISIONED">Active, provisioned</option>
         <option value="ARCHIVED">Archived</option>
     </select>
@@ -18,12 +18,12 @@
   <div class="courses-container">
       {% if courses %}
       {% for course in courses %}
-          <div class="course-item">
+          <div class="course-item {{ course['courseState'] }}" >
+
 
             {% if course['courseState']  == 'PROVISIONED' %}
-            <button class="button-primary" >Activate</button>
-            {% endif %}
-
+            <button class="button-primary" onclick="location.href='/course/activate/{{course.id}}';">Activate</button>
+              {% endif %}
             <a href="/course/{{ course.id }}">
                   <h3>{{ course['name'] }}</h3>
                   <p>{{ course.description }}</p>
@@ -31,7 +31,6 @@
                   <a href="{{ course['teacherFolder']['alternateLink'] }}" target="_blank" class="decorated">drive</a>
                   {% endif %}
               </a>
-
           </div>
       {% endfor %}
       {% else %}
@@ -44,5 +43,23 @@
 </div>
 
 
+
+{% endblock %}
+
+{% block scripts %}
+
+<Script>
+
+    let activeCourses = document.querySelectorAll(".course-item")
+
+    function filterChanged(e){
+        console.log(e)
+
+        if(selected == active){
+            activeCourses.style.diplay = "block"
+        }
+
+    }
+</Script>
 
 {% endblock %}
