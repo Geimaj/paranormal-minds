@@ -21,6 +21,7 @@ app = WSGIApplication(
         Route('/course/<courseID>/details', handler='src.app.course.CourseDetailsHandler'),
         Route('/course/<courseID>/leave', handler='src.app.course.LeaveCourseHandler'),
         Route('/course/<courseID>/remove', handler='src.app.course.RemoveStudentHandler'),
+        Route('/course/activate/<courseID>', handler='src.app.course.StateChangeHandler'),
         Route('/course/<id>', handler='src.app.course.CourseHandler'),
         
         Route('/courses', handler='src.app.courses.CoursesHandler'),

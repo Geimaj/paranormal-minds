@@ -18,12 +18,11 @@
   <div class="courses-container">
       {% if courses %}
       {% for course in courses %}
-          <div class="course-item">
+          <div class="course-item {{ course['courseState'] }}" >
 
             {% if course['courseState']  == 'PROVISIONED' %}
-            <button class="button-primary" >Activate</button>
-            {% endif %}
-
+            <button class="button-primary" onclick="location.href='/course/activate/{{course.id}}';">Activate</button>
+              {% endif %}
             <a href="/course/{{ course.id }}">
                   <h3>{{ course['name'] }}</h3>
                   <p>{{ course.description }}</p>
@@ -31,7 +30,6 @@
                   <a href="{{ course['teacherFolder']['alternateLink'] }}" target="_blank" class="decorated">drive</a>
                   {% endif %}
               </a>
-
           </div>
       {% endfor %}
       {% else %}
