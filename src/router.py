@@ -13,7 +13,7 @@ app = WSGIApplication(
         Route('/discussion/create/<courseId>', handler='src.app.discussion.Discussion'),
         Route('/discussion', handler='src.app.discussion.Discussion'),
 
-        Route('/courseDiscussion/<courseId>', handler='src.app.discussionItem.DiscussionItem'),
+        Route('/courseDiscussion/<discussionTopicID>', handler='src.app.discussionItem.DiscussionItem'),
         Route('/courseDiscussion', handler='src.app.discussionItem.DiscussionItem'),
         
         Route('/course/create', handler='src.app.course.CreateCourse'),

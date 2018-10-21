@@ -3,7 +3,7 @@ from src.framework.request_handler import BaseRequestHandler
 
 #import google users api
 from google.appengine.api import users
-
+from google.appengine.ext import ndb
 
 
 import src.models as models
@@ -11,27 +11,23 @@ import src.models as models
 
 class DiscussionItem(BaseRequestHandler):
     @decorator.oauth_required
-    def get(self, courseId):
+    def get(self, discussionTopicID):
 
-        course = models.Course.get_by_id(courseId)
-
-        discussionItem = []
-
-        try:
-            discussionItem = models.DiscussionItem.query().fetch()
-        except Exception as e:
-            print e
-
+        discussionItems = []
+        discussionTopic = None
+        
+        discussionTopic = models.DiscussionTopic.get_by_id(int(discussionTopicID))
+        discussionItems = models.DiscussionItem.query(models.DiscussionItem.discussionTopicId == str(discussionTopicID)).order(models.DiscussionItem.timestamp).fetch()
 
         template_parms = {
-            'course': course,
-            'discussionItem': discussionItem
+            'discussionTopic': discussionTopic,
+            'discussionItems': discussionItems
         }
 
         self.render('discussion/courseDiscussion.html', **template_parms)
 
     @decorator.oauth_required
-    def post(self, courseId):
+    def post(self, discussionTopicID):
         # get data from form
         uMessage = self.request.POST.get('uMessage')
 
@@ -48,9 +44,9 @@ class DiscussionItem(BaseRequestHandler):
         discussionItem.content = uMessage
         discussionItem.ownerId = userId
         discussionItem.ownerEmail = email
-        discussionItem.courseId = courseId
+        discussionItem.discussionTopicId = discussionTopicID 
 
         # save DiscussionTopic Object to DB
         discussionItem.put()
 
-        self.redirect('/course/%s' % courseId)
+        self.redirect('/courseDiscussion/%s#messageText' % discussionTopicID)

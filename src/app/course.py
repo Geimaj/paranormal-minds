@@ -3,7 +3,7 @@ import json as simplejson
 import googleapiclient.errors as errors
 from google.appengine.runtime import DeadlineExceededError
 from google.appengine.api import urlfetch
-urlfetch.set_default_fetch_deadline(10000)
+# urlfetch.set_default_fetch_deadline(10000)
 
 from src.framework.api import service, decorator
 from src.framework.request_handler import BaseRequestHandler
@@ -37,7 +37,7 @@ class CourseHandler(BaseRequestHandler):
             content = self.getKeyFromData(content_results,'courseWork')
             
             try:
-                discussionTopic = models.DiscussionTopic.query().fetch()
+                discussionTopic = models.DiscussionTopic.query(models.DiscussionTopic.courseId == id ).fetch()
             except Exception as e:
                 print "ERROR extracting results from api in course.py" * 20
                 print e
@@ -52,11 +52,6 @@ class CourseHandler(BaseRequestHandler):
 
             courseState = course['courseState']
             showBanner = courseState == "ACTIVE"
-
-            print
-            print
-            print showBanner 
-            print
 
             template_parms = {
                 'title': course['name'],
