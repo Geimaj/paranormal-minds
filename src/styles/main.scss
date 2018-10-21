@@ -27,7 +27,7 @@ h1{
 }
 
 h2{
-    color: darkgrey;
+    color: darkblue;
     font-family: 'Monaco';
     font-size: 35px !important;
     text-align: center;
@@ -62,7 +62,7 @@ label{
 nav {
     background-color: $background-grey;
     width: 100%;
-    height: 7%;
+    height: 8%;
     display: flex;
     justify-content: center;
 
@@ -73,7 +73,6 @@ nav {
         margin: 0;
         list-style: none;
         text-decoration: none;
-
     }
 
     li{

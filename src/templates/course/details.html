@@ -27,8 +27,6 @@
                     <input class=""  type="text" name="description" value="{{ course.description }}">
                 </div>
 
-
-                
                     <label for="courseState">Course state:</label>
             <div style="text-align: center">
                     <select class="" id="courseState" name="courseState">
@@ -41,10 +39,8 @@
                     </select>
             </div>
 
-                
                     <label for="room">Room</label>
                     <input class=""  type="text" name="room" value="{{ course.room }}">
-
 
             <input class="button-primary" value="Submit" type="submit">
             <input class="button" value="Cancel" type="button" onclick="location.href = '/course/{{ course.id }}'">

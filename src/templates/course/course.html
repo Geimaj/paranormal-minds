@@ -58,13 +58,14 @@
     
               {% if announcements %} 
                 {% for announcement in announcements %}
-    
-                <div class="announcement">
-                  <h1>{{ announcement.title }}</h1>
-                  <p>{{announcement.content }}</p>
-                  <aside>{{announcement.ownerEmail}}</aside>
+    <div style="padding: 10px">
+                <div class="announcement" style="background-color: #0FA0CE; box-shadow: 2px 3px 4px 5px #652d65b3">
+                  <h2>New Announcement!</h2>
+                  <h2>{{ announcement.title }}</h2>
+                  <h2>{{announcement.content }}</h2>
+                  <p>Lecturer contact - {{announcement.ownerEmail}}</p>
                 </div>
-    
+    </div>
                 {% endfor %}
               {% else %}
                 No announcements yet..
@@ -86,11 +87,9 @@
 
             {% if content %}
               {% for item in content %}
-
               <div class="announcement">
                 <h1>{{ item.title }}</h1>
                 <p>{{ item.description }}</p>
-                <aside>{{ item.workType }}</aside>
                {% endfor %}
             {% else %}
                 No Content yet..
