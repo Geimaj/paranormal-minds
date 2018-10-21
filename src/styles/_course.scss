@@ -4,6 +4,11 @@
     $background: $primaryLight;
     $tabs-base-color: $primaryLight;
 
+    .courseStateBanner {
+      font-size: 3rem;
+      background: red;
+    }
+
 .tabs {
     width: 100%;  
     float: none;

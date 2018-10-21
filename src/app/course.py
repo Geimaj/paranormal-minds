@@ -3,7 +3,7 @@ import json as simplejson
 import googleapiclient.errors as errors
 from google.appengine.runtime import DeadlineExceededError
 from google.appengine.api import urlfetch
-urlfetch.set_default_fetch_deadline(100)
+urlfetch.set_default_fetch_deadline(10000)
 
 from src.framework.api import service, decorator
 from src.framework.request_handler import BaseRequestHandler
@@ -23,7 +23,6 @@ class CourseHandler(BaseRequestHandler):
             # fetch students for this course
             student_results = service.courses().students().list(courseId=id).execute(http=decorator.http())
 
-
             # fetch content for this course
             content_results = service.courses().courseWork().list(courseId=id).execute(http=decorator.http())
 
@@ -34,27 +33,29 @@ class CourseHandler(BaseRequestHandler):
             discussionTopic = []
             try:
                 discussionTopic = models.DiscussionTopic.query().fetch()
-                print "HERE" *20
                 students = student_results['students']
                 teachers = teacher_results['teachers']
                 content = content_results['courseWork']
                 discussionTopics = models.DiscussionTopic.query().fetch()
             except Exception as e:
-                print "ERROR" *20
+                print "ERROR extracting results from api in course.py" * 20
                 print e
 
             # fetch announcements for this course
             announcements = models.Announcement.get_by_courseID(id)
 
-
-            print
-            print discussionTopic
-            print
-
             userProfile = service.userProfiles().get(userId='me').execute(http=decorator.http())
             userId = userProfile['id']
 
             isTeacher = models.Course.isUserTeacher(id, userId)
+
+            courseState = course['courseState']
+            showBanner = courseState == "ACTIVE"
+
+            print
+            print
+            print showBanner 
+            print
 
             template_parms = {
                 'title': course['name'],
@@ -66,6 +67,7 @@ class CourseHandler(BaseRequestHandler):
                 'teachers': teachers,
                 'students': students,
                 'discussionTopics': discussionTopic,
+                'activateCourseBanner': showBanner
             }
 
             self.render('course/course.html', **template_parms)
@@ -107,10 +109,11 @@ class CreateCourse(BaseRequestHandler):
             }
 
             course = service.courses().create(body=course).execute(http=decorator.http())
-            #TODO redirect to new course?
+
             self.redirect('/course/' + course['id'])
 
-        except DeadlineExceededError as e:
+        except Exception as e:
+            print 'ERRPR CREATING COURSE' * 6
             print e
 
 
@@ -215,11 +218,13 @@ class LeaveCourseHandler(BaseRequestHandler):
             print userProfile
 
             # do I remove myself as a student or as a teacher
-            # result = ''
-            # if models.Course.isUserTeacher(courseID, userId):
-            #     result = service.courses().teachers().delete(courseId=courseID, userId="me").execute(http=decorator.http())
-            # else:
-            result = service.courses().students().delete(courseId=courseID, userId="me").execute(http=decorator.http())
+            result = ''
+            if models.Course.isUserTeacher(courseID, userId):
+                print 'TEACHER'
+                result = service.courses().teachers().delete(courseId=courseID, userId=userId).execute(http=decorator.http())
+            else:
+                print 'STUD'
+                result = service.courses().students().delete(courseId=courseID, userId=userId).execute(http=decorator.http())
     
             print result
 

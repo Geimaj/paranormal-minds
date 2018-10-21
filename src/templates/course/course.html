@@ -2,6 +2,7 @@
 
 <div class="course">
 
+
   <div class="course details">
 
     <h1 class='title'>{{course.name}} </h1>
@@ -35,6 +36,17 @@
       
     </p>
   </div>
+
+
+
+  {% if not activateCourseBanner %}
+  <div class="courseStateBanner">
+    Please change course state to active to post content and invite people
+    <a href="/course/{{courseId}}/details">Edit course state</a>
+  </div>
+
+  {% else %}
+
 
   <ul class="tabs" role="tablist">
     <li>
@@ -175,6 +187,9 @@
 
 
   </ul>
+
+  {% endif %}
+
 
   <br style="clear: both;" />
 
