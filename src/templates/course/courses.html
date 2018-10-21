@@ -3,22 +3,35 @@
 <div class="courses">
 
   <div class="top-bar">
-      <button class="u-pull-right" onclick="location.href = '/course/join'"> Join course </button>
+      
+    <select name="courseState">
+        <option value="ACTIVE, PROVISIONED">Active, provisioned</option>
+        <option value="ARCHIVED">Archived</option>
+    </select>
+
+    
       <button class="u-pull-right"  onclick="location.href = '/course/create'"> Create course </button>
+      
       <h1 class='title'>Current enrollments</h1>
   </div>
 
   <div class="courses-container">
       {% if courses %}
-      {% for course in courses%}
+      {% for course in courses %}
           <div class="course-item">
-              <a href="/course/{{ course.id }}">
-                  <h3>{{ course.name }}</h3>
+
+            {% if course['courseState']  == 'PROVISIONED' %}
+            <button class="button-primary" >Activate</button>
+            {% endif %}
+
+            <a href="/course/{{ course.id }}">
+                  <h3>{{ course['name'] }}</h3>
                   <p>{{ course.description }}</p>
                   {% if course['teacherFolder'] %}
                   <a href="{{ course['teacherFolder']['alternateLink'] }}" target="_blank" class="decorated">drive</a>
                   {% endif %}
               </a>
+
           </div>
       {% endfor %}
       {% else %}
