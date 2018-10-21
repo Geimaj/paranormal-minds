@@ -4,9 +4,8 @@
     <div class="container">
 <h1>Discussion</h1>
 <h2>
-    This is the Discussion Page
+   Please input a discussion topic and description below
 </h2>
-<p>Course Discussion</p>
 
 <hr>
 <form id = discussionForm  action="/discussion/create/{{ course.id }}" method="post">
@@ -17,11 +16,13 @@
     <br>
 
     <br>
-    <label for="messageText"><b></b></label>
-        <input type="text" placeholder="Topic description" name="description" id="messageText" required>
+    <label for="messageText"><b>Discussion Description</b></label>
+        <input type="text" placeholder="" name="description" id="messageText" required>
     <br>
         <br>
-     <button type="submit"> Submit </button>
+    <div style="text-align: center">
+     <button class="button-primary" type="submit"> Submit </button>
+        </div>
 <hr>
 
 </form>

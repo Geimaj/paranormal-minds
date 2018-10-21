@@ -53,7 +53,7 @@
       <label for="tab1" role="tab" aria-selected="true" aria-controls="panel1" tabindex="0">Announcemnts</label>
       <div id="tab-content1" class="tab-content" role="tabpanel" aria-labelledby="description" aria-hidden="false">
         <div>
-            <button onclick="location.href = '/announcements/create/{{ courseId }}'"> Create announcement </button>
+            <button class="button-primary" onclick="location.href = '/announcements/create/{{ courseId }}'"> Create announcement </button>
             <div id="announcements">
     
               {% if announcements %} 
@@ -79,7 +79,7 @@
       <label for="tab2" role="tab" aria-selected="false" aria-controls="panel2" tabindex="0">Content</label>
       <div id="tab-content2" class="tab-content" role="tabpanel" aria-labelledby="specification" aria-hidden="true">
         <div>
-          <button onclick="location.href = '/content/{{ courseId }}'">Create Content</button>
+          <button class="button-primary" onclick="location.href = '/content/{{ courseId }}'">Create Content</button>
           <div class="announcement">
 
             <!--{{ content }}-->
@@ -107,7 +107,7 @@
         <div>
 
           <!--<a href="/discussion/{{courseId}}">Add discussion topic</a>-->
-          <button onclick="location.href = '/discussion/create/{{ courseId }}'"> Create Discussion </button>
+          <button class="button-primary" onclick="location.href = '/discussion/create/{{ courseId }}'"> Create Discussion </button>
 
           <div id="discussionTopics">
 
@@ -141,8 +141,6 @@
       <label for="tab5" role="tab" aria-selected="false" aria-controls="panel2" tabindex="0">Members</label>
       <div id="tab-content4" class="tab-content" role="tabpanel" aria-labelledby="specification" aria-hidden="true">
         <div id="options-tab">
-          <H2>Members</H2>
-
           <h4>Teachers</h4>
           <ul>
               {% for teacher in teachers %}
@@ -174,16 +172,13 @@
          
           <ul>
             {% if isTeacher %}
-            <li><a href="/course/{{courseId}}/details">Update course details</a></li>
-            <li><a href="/invite/teacher/{{ courseId }}">Invite teachers</a></li>
+
+             <li><button class="button-primary" onclick="location.href='/course/{{courseId}}/details'">Update Course Details</button></li>
+             <li><button class="button-primary" onclick="location.href='/invite/teacher/{{ courseId }}'">Invite Teachers</button></li>
             {% endif %}
-            <li><a href="/invite/student/{{ courseId }}">Invite students</a></li>
-            <li><a href="/course/{{courseId}}/leave">Leave course</a></li>
-
+              <li><button class="button-primary" onclick="location.href='/invite/student/{{ courseId }}'">Invite Students</button></li>
+              <li><button class="button-primary" onclick="location.href='/course/{{courseId}}/leave'">Leave Course</button></li>
           </ul>
-
-          <button onclick="showEnrollmentCode(true)">Show class code</button>
-
         </div>
       </div>
     </li>
