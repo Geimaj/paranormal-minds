@@ -18,8 +18,8 @@ class ContentHandler(BaseRequestHandler):
         upload_url ='/content/createAssignment'
 
         template_parms = {
-        'courseId' : courseId,
-        'uploadUrl': upload_url
+            'courseId' : courseId,
+            'uploadUrl': upload_url
         }
 
         self.render('content/content.html', **template_parms)
@@ -30,7 +30,6 @@ class ContentHandler(BaseRequestHandler):
             id = self.request.POST.get('courseId')
             assTitle = self.request.POST.get('assTitle')
             assDescription = self.request.POST.get('assDescription')
-            workTypes = self.request.POST.get('workTypes')
             fileUrl = self.request.POST.get('fileUrl')
 
             course_work = {

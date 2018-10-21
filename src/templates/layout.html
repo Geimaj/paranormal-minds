@@ -2,6 +2,8 @@
 
 {% block content %}
 <nav class="navbar">
+    <img src="/static/image/logo.png">
+
         <ul>
             {% if username %}
             <li id="name"><button class="button-primary" onclick="location.href='/'">{{username}}'s classroom</button></li>
@@ -13,19 +15,21 @@
             <li><button class="button-primary" onclick="location.href='/{{ login_url }}'">Sign in</button></li>
             {% endif %}
 
-            {% if logout_url %}
-            <li><button class="button-primary" onclick="location.href='/{{ logout_url }}'">Sign out</button></li>
-            {% endif %}
+
         </ul>
 </nav>
 
-<div class="sidebar one columns">
-        <ul class="course-list-sidebar">
+<div class="sidebar two columns">
+        <ul class="course-list-sidebar" style="list-style: none">
                 <li><button class="button-primary" onclick="location.href='/courses'">Courses</button></li>
         </ul>
+
+    {% if logout_url %}
+            <li style="margin-top: 220%"><button class="button-primary" onclick="location.href='/{{ logout_url }}'">Sign out</button></li>
+    {% endif %}
 </div>
 
-<div id="page-content" class="eleven columns">
+<div id="page-content" class="ten columns">
 
 {% block page_content %}
 {% endblock %}
