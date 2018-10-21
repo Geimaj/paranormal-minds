@@ -45,14 +45,6 @@ class ContentHandler(BaseRequestHandler):
 
             self.response.out.write(course_work)
 
-            # get data from form
-            # based on the name of the input element in the form
-            # id = self.request.POST.get('courseId')
-            # title = self.request.POST.get('asstitle')
-            # description = self.request.POST.get('assDescription')
-            #
-            #
-
             # get current user
             user = users.get_current_user()
             # get id of user
@@ -72,9 +64,6 @@ class ContentHandler(BaseRequestHandler):
             # write to db
             announcement.put()
             self.response.out.write(announcement)
-
-            course_work = service.courses().courseWork().create(courseId=id, 
-                                                                body=course_work).execute(http=decorator.http())
 
             self.redirect('/course/%s' % courseId)
 
