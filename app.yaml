@@ -27,3 +27,8 @@ skip_files:
 - ^(.*/)?\..*$
 - .git/
 - venv/
+
+
+# env_variables:
+#   GAE_USE_SOCKETS_HTTPLIB: True
+
