@@ -134,6 +134,8 @@
       </div>
     </li>
 
+    {% if isTeacher %}
+
     <li>
       <input type="radio" name="tabs" id="tab5" />
       <label for="tab5" role="tab" aria-selected="false" aria-controls="panel2" tabindex="0">Members</label>
@@ -161,6 +163,8 @@
         </div>
       </div>
     </li>
+
+    {% endif %}
 
     <li>
       <input type="radio" name="tabs" id="tab4" />
