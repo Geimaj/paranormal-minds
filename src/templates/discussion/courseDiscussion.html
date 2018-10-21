@@ -2,42 +2,51 @@
 
 {% block page_content %}
     <div class="container">
-<h1>{{disussionTopic.title}}</h1>
-<h2>
-    {{disussionTopic.description}}
-</h2>
-<p>Course Discussion</p>
 
-<hr>
-<form id = coursediscussionForm  action="/courseDiscussion/{{ course.id }}" method="post";  >
+{% if not discussionTopic %}
+        Sorry we couldn't find that for you...
+{% else %}
+
+        <h1>{{ discussionTopic['title']}}</h1>
+        <h3>{{ discussionTopic['description'] }}</h3>
+
+    <p> {{ discussionTopic['ownerEmail'] }} on {{ discussionTopic.timestamp }} </p>
+
+    <hr>
+    <h4>Discussion</h4>
 
 
-          <h4>Discussion</h4>
-         {% for uMessage in discussionItem %}
+    {% if discussionItems %}
+    {% for uMessage in discussionItems %}
 
-            <div id="discussionItem">
+        <div id="discussionItem">
 
             <!-- add link to page for disussion topic -->
-              <div class="discussionItem">
+            <div class="discussionItem">
                 <p>{{uMessage.content}}</p>
                 <p>Posted by: {{ uMessage.ownerEmail}} on {{ uMessage.timestamp }}</p>
                 </a>
-
-              </div>
             </div>
-              <hr>
-              {% endfor %}
-    <br>
-
-    <br>
-    <label for="messageText"><b></b></label>
-        <input type="text" placeholder="Send a Message" name="uMessage" id="messageText" required>
-    <br>
+        </div>
+        <hr>
+    {% endfor %}
+    
+    {% else %}
+        Leave your thoughts here...
+    {% endif %}
+    
+    
+    <form id = coursediscussionForm  action="/courseDiscussion/{{ discussionTopic.key.id() }}" method="post";  >
         <br>
-     <button type="submit"> Send </button>
-<hr>
 
-</form>
+        <label for="messageText"><b></b></label>
+        <input type="text" placeholder="Send a Message" name="uMessage" id="messageText" required>
+        <button class="button-primary" type="submit"> Send </button>
+        <hr>
+    </form>
+
+{% endif %}
+
 
 </div>
 {% endblock %}

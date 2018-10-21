@@ -13,47 +13,21 @@ class DiscussionItem(BaseRequestHandler):
     @decorator.oauth_required
     def get(self, discussionTopicID):
 
-        # course = models.Course.get_by_id(courseId)
-
-        discussion = 'api'
-
         discussionItems = []
         discussionTopic = None
         
-        discussionTopic = models.DiscussionTopic.get_by_id("5275456790069248")
-        # discussionTopic = ndb.Key(models.DiscussionTopic, '5275456790069248').get()
-            # discussionItems = models.DiscussionItem.query().fetch()
-
-        print
-        print
-        print
-        print
-        print
-
-        print discussionTopic
-
-        print
-        print
-        print
-        print
-
-
-        try:
-            pass
-        except Exception as e:
-            print e
-
+        discussionTopic = models.DiscussionTopic.get_by_id(int(discussionTopicID))
+        discussionItems = models.DiscussionItem.query(models.DiscussionItem.discussionTopicId == str(discussionTopicID)).order(models.DiscussionItem.timestamp).fetch()
 
         template_parms = {
-            'course': 'buthole',
-            'discussionItem': discussionItems,
-            'discussionTopic': discussionTopic
+            'discussionTopic': discussionTopic,
+            'discussionItems': discussionItems
         }
 
         self.render('discussion/courseDiscussion.html', **template_parms)
 
     @decorator.oauth_required
-    def post(self, courseId):
+    def post(self, discussionTopicID):
         # get data from form
         uMessage = self.request.POST.get('uMessage')
 
@@ -70,10 +44,9 @@ class DiscussionItem(BaseRequestHandler):
         discussionItem.content = uMessage
         discussionItem.ownerId = userId
         discussionItem.ownerEmail = email
-        discussionItem.courseId = courseId
-        # discussionItem.discussionTopicID = 
+        discussionItem.discussionTopicId = discussionTopicID 
 
         # save DiscussionTopic Object to DB
         discussionItem.put()
 
-        self.redirect('/course/%s' % courseId)
+        self.redirect('/courseDiscussion/%s#messageText' % discussionTopicID)

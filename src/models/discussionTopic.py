@@ -13,10 +13,6 @@ class DiscussionTopic(BaseModel):
     def getDiscussionItems(self):
         items = discussionItems.query().fetch()
 
-    # @staticmethod
-    # def get_by_id(id):
-    #     return DiscussionTopic.query(DiscussionTopic.key.id() == id).fetch()
-        
 
     
 
