@@ -3,7 +3,7 @@
 {% block page_content %}
 <div class="createAssignment">
 
-    <form method="post" action="{{uploadUrl}}">
+    <form method="POST" enctype="multipart/form-data" action="/content/{{courseId}}">
         <hr>
             <input type="hidden" name="courseId" value="{{courseId}}">
             <label for="assTitle"><b>Assignment</b></label>
