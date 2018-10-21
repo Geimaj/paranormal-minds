@@ -7,8 +7,11 @@
       <h1>Current enrollments</h1>
       
     <select id="courseFilter" name="courseState" onchange="filterChanged()">
-        <option value="ACTIVE, PROVISIONED">Active, provisioned</option>
+        <option value="ACTIVE">Active</option>
         <option value="ARCHIVED">Archived</option>
+        <option value="PROVISIONED">Provisioned</option>
+        <option value="DECLINED">Declined</option>
+        <option value="SUSPENDED">Suspended</option>
     </select>
   </div>
 
@@ -16,7 +19,6 @@
       {% if courses %}
       {% for course in courses %}
           <div class="course-item {{ course['courseState'] }}" >
-
 
             {% if course['courseState']  == 'PROVISIONED' %}
             <button class="button-primary" onclick="location.href='/course/activate/{{course.id}}';">Activate</button>
@@ -37,10 +39,7 @@
 
   </div>
 
-
 </div>
-
-
 
 {% endblock %}
 
@@ -48,14 +47,31 @@
 
 <Script>
 
-    let activeCourses = document.querySelectorAll(".course-item")
+    let courses = document.querySelectorAll(".course-item");
 
-    function filterChanged(e){
-        console.log(e)
+    let selectedItem = document.getElementById("courseFilter");
 
-        if(selected == active){
-            activeCourses.style.diplay = "block"
-        }
+    function filterChanged(){
+
+        var item = selectedItem.options[selectedItem.selectedIndex].value;
+        console.log(item)
+
+       showItems(item);
+    }
+
+    function showItems(selectedClass) {
+
+        selectedClass = selectedClass.toUpperCase();
+        let selectedCourses = document.querySelectorAll("." + selectedClass);
+        console.log(selectedCourses);
+
+        courses.forEach((item) => {
+            item.style.display = "none";
+        });
+
+        selectedCourses.forEach((item) => {
+            item.style.display = "block";
+        });
 
     }
 </Script>
