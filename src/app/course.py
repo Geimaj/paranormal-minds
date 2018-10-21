@@ -31,12 +31,13 @@ class CourseHandler(BaseRequestHandler):
             teachers = []
             content = []
             discussionTopic = []
+
+            students = self.getKeyFromData(student_results, 'students')
+            teachers = self.getKeyFromData(teacher_results, 'teachers')
+            content = self.getKeyFromData(content_results,'courseWork')
+            
             try:
                 discussionTopic = models.DiscussionTopic.query().fetch()
-                students = student_results['students']
-                teachers = teacher_results['teachers']
-                content = content_results['courseWork']
-                discussionTopics = models.DiscussionTopic.query().fetch()
             except Exception as e:
                 print "ERROR extracting results from api in course.py" * 20
                 print e
@@ -74,6 +75,7 @@ class CourseHandler(BaseRequestHandler):
 
         except client.AccessTokenRefreshError:
             self.redirect('/')
+
 
 
 

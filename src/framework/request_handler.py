@@ -43,3 +43,9 @@ class BaseRequestHandler(RequestHandler):
         template_html = jinja_template.render(kwargs)
 
         self.response.out.write(template_html)
+
+    @staticmethod
+    def getKeyFromData(data,key):
+        if key in data.keys():
+            return data[key]
+        return []
