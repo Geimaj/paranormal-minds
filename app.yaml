@@ -29,5 +29,6 @@ skip_files:
 - venv/
 
 
-env_variables:
-- GAE_USE_SOCKETS_HTTPLIB: '10'
+# env_variables:
+#   GAE_USE_SOCKETS_HTTPLIB: True
+

@@ -14,6 +14,14 @@ parent_dir = os.path.abspath(os.path.join(parent_dir, os.pardir))
 
 CLIENT_SECRETS = os.path.abspath(os.path.join(parent_dir, 'credentials.json'))
 
+SCOPES = [
+    'https://www.googleapis.com/auth/classroom.coursework.me',
+    'https://www.googleapis.com/auth/classroom.courses',
+    'https://www.googleapis.com/auth/classroom.coursework.students',
+    'https://www.googleapis.com/auth/classroom.rosters',
+    'https://www.googleapis.com/auth/drive'
+]
+
 decorator = OAuth2DecoratorFromClientSecrets(
     CLIENT_SECRETS,
-    scope='https://www.googleapis.com/auth/classroom.courses https://www.googleapis.com/auth/classroom.coursework.students https://www.googleapis.com/auth/classroom.rosters https://www.googleapis.com/auth/drive')
+    scope=SCOPES)
