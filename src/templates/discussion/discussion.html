@@ -1,15 +1,15 @@
 {% extends 'layout.html' %}
 
 {% block page_content %}
-    <div class="container">
+        
 <h1>Discussion</h1>
 <h2>
-    This is the Discussion Page
+    {{ discussion }}
 </h2>
 <p>Course Discussion</p>
 
 <hr>
-<form id = discussionForm  action="/discussion/create/{{ course.id }}" method="post">
+<form id ="discussionForm"  action="/discussion/create/{{ course.id }}" method="post">
 
 
     <label for="dissTopic"><b>Discussion Topic</b></label>
@@ -26,5 +26,4 @@
 
 </form>
 
-</div>
 {% endblock %}

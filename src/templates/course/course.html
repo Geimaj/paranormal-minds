@@ -115,13 +115,12 @@
             {% for topic in discussionTopics %}
 
             <!-- add link to page for disussion topic -->
-            <a href="/courseDiscussion/{{ course.id }}">
+            <a href="/courseDiscussion/{{ topic.key.id() }}">
               <div class="discussionTopic">
                 <h2>{{topic.title}}</h2>  
                 <p>{{topic.description}}</p>
                 <p>Posted by: {{ topic.ownerEmail}} on {{ topic.timestamp }}</p>
-                <a href="/courseDiscussion/{{ course.id }}">
-                </a>
+            </a>
 
               </div>
             

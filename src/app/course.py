@@ -53,11 +53,6 @@ class CourseHandler(BaseRequestHandler):
             courseState = course['courseState']
             showBanner = courseState == "ACTIVE"
 
-            print
-            print
-            print showBanner 
-            print
-
             template_parms = {
                 'title': course['name'],
                 'isTeacher': isTeacher,
