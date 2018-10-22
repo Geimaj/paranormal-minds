@@ -13,7 +13,7 @@ import src.models as models
 #import google users api
 from google.appengine.api import users
 
-class SubmissionHandler(BaseRequestHandler):
+class StudentSubmissionHandler(BaseRequestHandler):
     
     @decorator.oauth_required
     def get(self, courseID, courseWorkID):
