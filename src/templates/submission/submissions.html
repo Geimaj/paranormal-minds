@@ -1,0 +1,23 @@
+{% extends "layout.html" %} {% block page_content %}
+
+    <h1>Submissions for {{ courseWork.title}} </h1>
+
+    <hr>
+
+    {%for submission in submissions %}
+
+        <div class="submission-item">
+            <img src="{{ submission.assignmentSubmission.thumbnailUr }}">
+            
+            {% for attachment in submission['assignmentSubmission']['attachments'] %}
+            <h2>{{ attachment['driveFile']['title'] }}</h2>
+            <img src="{{ attachment['driveFile']['thumbnailUrl'] }}">
+            
+            
+            {% endfor %}
+            <p>Submitted by: {{ submission.userId }} <a target="_blank" href="{{submission['alternateLink']}}">view in classroom</a></p>
+            <hr>
+        </div>
+    {% endfor %}
+
+{% endblock %}

@@ -26,11 +26,16 @@ class CourseHandler(BaseRequestHandler):
             # fetch content for this course
             content_results = service.courses().courseWork().list(courseId=id).execute(http=decorator.http())
 
+            #submissions 
+            
+            # print submission_results
+
             #get data we are inretested in from api results
             students = []
             teachers = []
             content = []
             discussionTopic = []
+            submissions = []
 
             students = self.getKeyFromData(student_results, 'students')
             teachers = self.getKeyFromData(teacher_results, 'teachers')

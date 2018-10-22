@@ -141,6 +141,26 @@
     {% if isTeacher %}
 
     <li>
+      <input type="radio" name="tabs" id="tab6" />
+      <label for="tab6" role="tab" aria-selected="false" aria-controls="panel2" tabindex="0">Submissions</label>
+      <div id="tab-content6" class="tab-content" role="tabpanel" aria-labelledby="specification" aria-hidden="true">   
+    
+        {% if content|length > 0 %}
+        {% for item in content %}
+
+        <a href="/submission/{{ courseId }}/{{ item.id }}">
+          <h3> submissions for {{ item.title }}</h3>
+        </a>
+        </hr>
+
+        {% endfor %}
+        {% else %}
+          No content has been uploaded yet... 
+        {% endif %}
+    
+    </li>
+
+    <li>
       <input type="radio" name="tabs" id="tab5" />
       <label for="tab5" role="tab" aria-selected="false" aria-controls="panel2" tabindex="0">Members</label>
       <div id="tab-content4" class="tab-content" role="tabpanel" aria-labelledby="specification" aria-hidden="true">

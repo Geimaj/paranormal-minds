@@ -30,6 +30,9 @@ app = WSGIApplication(
         Route('/content/submission', handler='src.app.content.SubmissionHandler'),
         Route('/content/<courseId>', handler='src.app.content.ContentHandler'),
 
+        Route('/submission/<courseID>/<courseWorkID>', handler='src.app.submission.SubmissionHandler'),
+
+
         Route('/invite/student/<courseID>', handler='src.app.invite.StudentInviteHandler'),
         Route('/invite/teacher/<courseID>', handler='src.app.invite.TeacherInviteHandler'),
         
