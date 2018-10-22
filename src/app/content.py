@@ -4,7 +4,7 @@ import os
 from google.appengine.api import app_identity
 from apiclient.http import MediaFileUpload
 
-from src.framework.request_handler import BaseRequestHandler
+from src.framework.request_handler import BaseRequestHandler, jinja2
 from src.framework.api import service, decorator, client, driveService
 
 # import our models
@@ -28,9 +28,13 @@ class ContentHandler(BaseRequestHandler):
     def post(self, courseId):
         try:
             id = self.request.POST.get('courseId')
+            id = jinja2.escape(id)
             assTitle = self.request.POST.get('assTitle')
+            assTitle = jinja2.escape(assTitle)
             assDescription = self.request.POST.get('assDescription')
+            assDescription = jinja2.escape(assDescription)
             fileUrl = self.request.POST.get('fileUrl')
+            fileUrl = jinja2.escape(fileUrl);
 
             course_work = {
                 'title': assTitle,

@@ -84,6 +84,8 @@
         <div>
         {% if isTeacher %}
             <button class="button-primary" onclick="location.href = '/content/{{ courseId }}'">Create Content</button>
+          {% else %}
+          <button class="button-primary" onclick="location.href = '/content/{{ courseId }}'">Submit Content</button>
         {% endif %}
             <div class="announcement">
 
@@ -126,7 +128,7 @@
             </a>
 
               </div>
-            
+
               <hr>
               {% endfor %}
 

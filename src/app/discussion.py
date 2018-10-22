@@ -1,10 +1,8 @@
 from src.framework.api import service, decorator, users
-from src.framework.request_handler import BaseRequestHandler
+from src.framework.request_handler import BaseRequestHandler, jinja2
 
 #import google users api
 from google.appengine.api import users
-
-
 
 import src.models as models
 
@@ -25,7 +23,9 @@ class Discussion(BaseRequestHandler):
     def post(self, courseId):
         # get data from form
         topic = self.request.POST.get('topic')
+        topic = jinja2.escape(topic)
         description = self.request.POST.get('description')
+        description = jinja2.escape(description)
 
         userProfile = users.get_current_user()
         userId = userProfile.user_id()

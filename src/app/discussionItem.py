@@ -1,5 +1,5 @@
 from src.framework.api import service, decorator, users
-from src.framework.request_handler import BaseRequestHandler
+from src.framework.request_handler import BaseRequestHandler, jinja2
 
 #import google users api
 from google.appengine.api import users
@@ -30,6 +30,7 @@ class DiscussionItem(BaseRequestHandler):
     def post(self, discussionTopicID):
         # get data from form
         uMessage = self.request.POST.get('uMessage')
+        uMessage = jinja2.escape(uMessage)
 
         userProfile = users.get_current_user()
         userId = userProfile.user_id()
