@@ -41,6 +41,7 @@ class DiscussionItem(BaseRequestHandler):
     def post(self, discussionTopicID):
         # get data from form
         uMessage = self.request.POST.get('uMessage')
+        uMessage = jinja2.escape(uMessage)
 
         uMessage = jinja2.escape(uMessage)
 

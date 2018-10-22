@@ -6,7 +6,7 @@ from google.appengine.api import urlfetch
 # urlfetch.set_default_fetch_deadline(10000)
 
 from src.framework.api import service, decorator
-from src.framework.request_handler import BaseRequestHandler
+from src.framework.request_handler import BaseRequestHandler, jinja2
 import src.models as models
 
 class CourseHandler(BaseRequestHandler):
@@ -97,8 +97,11 @@ class CreateCourse(BaseRequestHandler):
         try:
 
             courseName =  self.request.POST.get('courseName')
+            courseName = jinja2.escape(courseName)
             courseHeading =  self.request.POST.get('desHeading')
+            courseHeading = jinja2.escape(courseHeading)
             courseDescription =  self.request.POST.get('description')
+            courseDescription = jinja2.escape(courseDescription)
             ownerID = 'me'
             courseState = 'PROVISIONED'
 
@@ -158,11 +161,17 @@ class CourseDetailsHandler(BaseRequestHandler):
             # get updated values from form
             post = self.request.POST
             name = post.get('name')
+            name = jinja2.escape(name)
             section = post.get('section')
+            section = jinja2.escape(section)
             descriptionHeading = post.get('description-heading')
+            descriptionHeading = jinja2.escape(descriptionHeading)
             description = post.get('description')
+            description = jinja2.escape(description)
             room = post.get('room')
+            room = jinja2.escape(room)
             courseState = post.get('courseState')
+            courseState = jinja2.escape(courseState)
 
             #assign new values from form to course 
             course['name'] = name

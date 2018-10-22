@@ -1,5 +1,5 @@
 # import request handler
-from src.framework.request_handler import BaseRequestHandler
+from src.framework.request_handler import BaseRequestHandler, jinja2
 
 # import utils for api access
 from src.framework.api import service, decorator
@@ -33,7 +33,9 @@ class Announcements(BaseRequestHandler):
         # get data from form
         # based on the name of the input element in the form 
         title = self.request.POST.get('title')
-        description = self.request.POST.get('description')          
+        title = jinja2.escape(title)
+        description = self.request.POST.get('description')
+        description = jinja2.escape(description)
 
         #get current user
         user = users.get_current_user()

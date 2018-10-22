@@ -53,7 +53,9 @@
       <label for="tab1" role="tab" aria-selected="true" aria-controls="panel1" tabindex="0">Announcemnts</label>
       <div id="tab-content1" class="tab-content" role="tabpanel" aria-labelledby="description" aria-hidden="false">
         <div>
+            {% if isTeacher %}
             <button class="button-primary" onclick="location.href = '/announcements/create/{{ courseId }}'"> Create announcement </button>
+           {% endif %}
             <div id="announcements">
     
               {% if announcements %} 
@@ -80,8 +82,12 @@
       <label for="tab2" role="tab" aria-selected="false" aria-controls="panel2" tabindex="0">Content</label>
       <div id="tab-content2" class="tab-content" role="tabpanel" aria-labelledby="specification" aria-hidden="true">
         <div>
-          <button class="button-primary" onclick="location.href = '/content/{{ courseId }}'">Create Content</button>
-          <div class="announcement">
+        {% if isTeacher %}
+            <button class="button-primary" onclick="location.href = '/content/{{ courseId }}'">Create Content</button>
+          {% else %}
+          <button class="button-primary" onclick="location.href = '/content/{{ courseId }}'">Submit Content</button>
+        {% endif %}
+            <div class="announcement">
 
             {% if content %}
               {% for item in content %}
@@ -128,7 +134,7 @@
             </a>
 
               </div>
-            
+
               <hr>
               {% endfor %}
 
