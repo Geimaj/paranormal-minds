@@ -14,3 +14,9 @@ indexes:
   properties:
   - name: discussionTopicId
   - name: timestamp
+
+- kind: DiscussionItem
+  properties:
+  - name: discussionTopicId
+  - name: timestamp
+    direction: desc

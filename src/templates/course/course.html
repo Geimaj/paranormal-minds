@@ -83,18 +83,24 @@
           <button class="button-primary" onclick="location.href = '/content/{{ courseId }}'">Create Content</button>
           <div class="announcement">
 
-            <!--{{ content }}-->
-
             {% if content %}
               {% for item in content %}
-              <div class="announcement">
+              <div class="announcement-item">
                 <h1>{{ item.title }}</h1>
                 <p>{{ item.description }}</p>
+
+                {% for material in item.materials %}
+                  <img src="{{ material['driveFile']['driveFile']['thumbnailUrl'] }}">
+                  <a href="{{ material['driveFile']['driveFile']['alternateLink'] }}" target="_blank">Download</a>
+
+                {% endfor %}
+
+              </div>
+              <hr>
                {% endfor %}
             {% else %}
                 No Content yet..
             {% endif %}
-              </div>
           </div>
         </div>
 

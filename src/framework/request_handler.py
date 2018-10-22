@@ -16,8 +16,7 @@ class BaseRequestHandler(RequestHandler):
         "templates")
 
     jinja_enviroment = jinja2.Environment(
-        loader=jinja2.FileSystemLoader(template_dir)
-    )
+        loader=jinja2.FileSystemLoader(template_dir))
 
     def render(self, template, **kwargs):
         jinja_template = self.jinja_enviroment.get_template(template)

@@ -46,4 +46,18 @@ class Discussion(BaseRequestHandler):
         # save DiscussionTopic Object to DB
         discussionTopic.put()
 
+        
+        # create announcement object from our models
+        announcement = models.Announcement()
+
+        # pass data to announcemnt object
+        announcement.title = topic
+        announcement.content = description
+        announcement.courseId = courseId
+        announcement.ownerId = userId
+        announcement.ownerEmail = email
+
+        # write to db
+        announcement.put()
+
         self.redirect('/course/%s' % courseId)
